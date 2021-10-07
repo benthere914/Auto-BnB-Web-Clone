@@ -1,0 +1,25 @@
+#parent{
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+}
+form{
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    border: solid grey 5px;
+}
+
+form button{
+    width: 200px;
+}
+
+form > * {
+    margin: 25px;
+}
+
+form label{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
