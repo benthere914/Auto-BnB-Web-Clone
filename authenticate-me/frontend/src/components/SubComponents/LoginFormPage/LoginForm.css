@@ -2,7 +2,10 @@
     position: absolute;
 	display: flex;
 	justify-content: center;
-	padding: 300px;
+	padding-top: 300px;
+    padding-bottom: 300px;
+    padding-left: 500px;
+    padding-right: 500px;
 }
 form {
 	width: 750px;

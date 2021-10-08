@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as sessionActions from '../../../store/session';
 import './SignupForm.css';
+import { useAuthModal } from '../../../Context/AuthModals';
 function SignupFormPage() {
+    const { setSignupModal } = useAuthModal();
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [email, setEmail] = useState('');
@@ -18,11 +20,13 @@ function SignupFormPage() {
 		e.preventDefault();
 		if (password === confirmPassword) {
 			setErrors([]);
+            setSignupModal(false);
 			return dispatch(
 				sessionActions.signup({ email, username, password })
 			).catch(async (res) => {
 				const data = await res.json();
 				if (data && data.errors) setErrors(data.errors);
+                setSignupModal(true);
 			});
 		}
 		return setErrors([
@@ -34,7 +38,7 @@ function SignupFormPage() {
 		<div id="parent">
 
 			<form onSubmit={handleSubmit}>
-                <i className='fas fa-window-close'></i>
+                <i className='fas fa-window-close' onClick={()=> setSignupModal(false)}></i>
                 {!!errors.length &&
 				<ul>
 					{errors.map((error, idx) => (

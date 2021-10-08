@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAuthModal } from '../../../Context/AuthModals';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginFormPage = () => {
+    const {setLoginModal} = useAuthModal();
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [credential, setCredential] = useState('');
@@ -28,7 +30,7 @@ const LoginFormPage = () => {
 		<div id="parent">
 
 			<form onSubmit={handleSubmit}>
-                <i className='fas fa-window-close'></i>
+                <i className='fas fa-window-close' onClick={() => setLoginModal(false)}></i>
 				{errors.length > 0 && (
 					<ul>
 						{errors.map((error, idx) => (

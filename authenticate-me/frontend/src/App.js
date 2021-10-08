@@ -20,9 +20,9 @@ function App() {
     console.log(loginModal, signupModal)
 	return (
 		<>
-			<Navigation isLoaded={isLoaded} />
             {loginModal && <LoginFormPage></LoginFormPage>}
             {signupModal && <SignupFormPage></SignupFormPage>}
+			<Navigation isLoaded={isLoaded} />
 			{isLoaded && (
 				<Switch>
                     <Route exact path='/'>
