@@ -2,34 +2,26 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAuthModal } from '../../../Context/AuthModals';
+import { TopButton } from './TopButton';
+import { DropDownMenu } from './DropDownMenu';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-function Navigation({ isLoaded }) {
-    const {setLoginModal, setSignupModal} = useAuthModal()
-	const sessionUser = useSelector((state) => state.session.user);
-
-	let sessionLinks;
-	if (sessionUser) {
-		sessionLinks = <ProfileButton user={sessionUser} />;
-	} else {
-		sessionLinks = (
-			<>
-                <ul>
-                    <li onClick={() => {setSignupModal(false);setLoginModal(true)}}>Log In</li>
-                    <li onClick={() => {setLoginModal(false);setSignupModal(true)}}>Sign Up</li>
-                </ul>
-			</>
-		);
-	}
-
+import { useState } from 'react';
+function Navigation() {
+    const [dropDown, setDropDown] = useState(false);
+    console.log(dropDown, 'dropdonw')
 	return (
-		<ul>
+		<ul className='navbar'>
 			<li>
-				<NavLink exact to="/">
-					Home
+				<NavLink className="home" exact to="/">
+					CarBnN
 				</NavLink>
-				{isLoaded && sessionLinks}
 			</li>
+            <li>
+                <TopButton dropDown={dropDown} setDropDown={setDropDown}/>
+                {dropDown && <DropDownMenu dropDown={dropDown} setDropDown={setDropDown}/>}
+				{/* {isLoaded && sessionLinks} */}
+            </li>
 		</ul>
 	);
 }

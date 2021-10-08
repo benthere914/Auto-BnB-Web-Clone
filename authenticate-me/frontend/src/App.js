@@ -16,13 +16,11 @@ function App() {
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 	}, [dispatch]);
-    const auth = useSelector(state => state.session);
-    console.log(loginModal, signupModal)
 	return (
 		<>
-            {loginModal && <LoginFormPage></LoginFormPage>}
-            {signupModal && <SignupFormPage></SignupFormPage>}
-			<Navigation isLoaded={isLoaded} />
+            {loginModal?(<LoginFormPage/>): null}
+            {signupModal?(<SignupFormPage/>): null}
+			<Navigation/>
 			{isLoaded && (
 				<Switch>
                     <Route exact path='/'>
