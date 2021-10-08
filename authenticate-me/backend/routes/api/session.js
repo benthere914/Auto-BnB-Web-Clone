@@ -16,7 +16,7 @@ const validateLogin = [
       .withMessage('Please provide a password.'),
     handleValidationErrors,
   ];
-
+  
 router.post('/', validateLogin, asyncHandler(async (req, res, next) => {
 	const { credential, password } = req.body;
 	const user = await User.login({ credential, password });
@@ -41,4 +41,5 @@ router.get('/',restoreUser,(req, res) => {
     if (user) {return res.json({user: user.toSafeObject()});}
     else return res.json({});
 });
+
 module.exports = router;
