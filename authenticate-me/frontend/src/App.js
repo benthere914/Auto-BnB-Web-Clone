@@ -1,29 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import LoginFormPage from './components/LoginFormPage';
-import SignupFormPage from './components/SignupFormPage';
+import { useAuthModal } from './Context/AuthModals';
+import LoginFormPage from './components/SubComponents/LoginFormPage';
+import SignupFormPage from './components/SubComponents/SignupFormPage';
 import * as sessionActions from './store/session';
-import Navigation from './components/Navigation';
+import Navigation from './components/SubComponents/Navigation';
 
 function App() {
+    const {loginModal, signupModal} = useAuthModal()
+
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
+
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 	}, [dispatch]);
-
+    const auth = useSelector(state => state.session);
+    console.log(loginModal, signupModal)
 	return (
 		<>
 			<Navigation isLoaded={isLoaded} />
+            {loginModal && <LoginFormPage></LoginFormPage>}
+            {signupModal && <SignupFormPage></SignupFormPage>}
 			{isLoaded && (
 				<Switch>
-					<Route path="/login">
-						<LoginFormPage />
-					</Route>
-					<Route path="/signup">
-						<SignupFormPage />
-					</Route>
+                    <Route exact path='/'>
+
+                    </Route>
+
 				</Switch>
 			)}
 		</>

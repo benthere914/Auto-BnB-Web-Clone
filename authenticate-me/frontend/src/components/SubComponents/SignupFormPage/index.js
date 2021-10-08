@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import * as sessionActions from '../../store/session';
+import * as sessionActions from '../../../store/session';
 import './SignupForm.css';
 function SignupFormPage() {
 	const dispatch = useDispatch();
@@ -32,12 +32,17 @@ function SignupFormPage() {
 
 	return (
 		<div id="parent">
+
 			<form onSubmit={handleSubmit}>
+                <i className='fas fa-window-close'></i>
+                {!!errors.length &&
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-				</ul>
+				</ul>}
+
+
 				<label>
 					Email
 					<input

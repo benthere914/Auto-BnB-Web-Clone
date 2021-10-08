@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
+import * as sessionActions from '../../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
@@ -26,7 +26,9 @@ const LoginFormPage = () => {
 
 	return (
 		<div id="parent">
+
 			<form onSubmit={handleSubmit}>
+                <i className='fas fa-window-close'></i>
 				{errors.length > 0 && (
 					<ul>
 						{errors.map((error, idx) => (
@@ -34,7 +36,8 @@ const LoginFormPage = () => {
 						))}
 					</ul>
 				)}
-
+                <div>
+                </div>
 				<label>
 					Username or Email
 					<input

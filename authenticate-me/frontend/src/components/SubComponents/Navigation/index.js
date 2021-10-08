@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useAuthModal } from '../../../Context/AuthModals';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-
 function Navigation({ isLoaded }) {
+    const {setLoginModal, setSignupModal} = useAuthModal()
 	const sessionUser = useSelector((state) => state.session.user);
 
 	let sessionLinks;
@@ -13,8 +14,10 @@ function Navigation({ isLoaded }) {
 	} else {
 		sessionLinks = (
 			<>
-				<NavLink to="/login">Log In</NavLink>
-				<NavLink to="/signup">Sign Up</NavLink>
+                <ul>
+                    <li onClick={() => {setSignupModal(false);setLoginModal(true)}}>Log In</li>
+                    <li onClick={() => {setLoginModal(false);setSignupModal(true)}}>Sign Up</li>
+                </ul>
 			</>
 		);
 	}
