@@ -3,4 +3,10 @@
     top: -25px;
     right: -707px;
     width: min-content;
+    cursor: pointer;
+}
+
+.switchModals{
+    cursor: pointer;
+    font-weight: 900;
 }

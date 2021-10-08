@@ -27,3 +27,9 @@ form label {
 	display: flex;
 	justify-content: space-between;
 }
+
+.switchModals{
+    cursor: pointer;
+    font-weight: 900;
+
+}

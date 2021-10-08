@@ -5,7 +5,7 @@ import * as sessionActions from '../../../store/session';
 import './SignupForm.css';
 import { useAuthModal } from '../../../Context/AuthModals';
 function SignupFormPage() {
-    const { setSignupModal } = useAuthModal();
+    const { setSignupModal, setLoginModal } = useAuthModal();
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [email, setEmail] = useState('');
@@ -20,13 +20,11 @@ function SignupFormPage() {
 		e.preventDefault();
 		if (password === confirmPassword) {
 			setErrors([]);
-            setSignupModal(false);
 			return dispatch(
 				sessionActions.signup({ email, username, password })
-			).catch(async (res) => {
+			).then(() => setSignupModal(false)).catch(async (res) => {
 				const data = await res.json();
 				if (data && data.errors) setErrors(data.errors);
-                setSignupModal(true);
 			});
 		}
 		return setErrors([
@@ -84,6 +82,7 @@ function SignupFormPage() {
 					/>
 				</label>
 				<button type="submit">Sign Up</button>
+                <p>Already Have An Account? Log In <span className="switchModals" onClick={()=> {setSignupModal(false);setLoginModal(true)}}>Here</span></p>
 			</form>
 		</div>
 	);
