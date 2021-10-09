@@ -6,6 +6,7 @@ import LoginFormPage from './components/SubComponents/LoginFormPage';
 import SignupFormPage from './components/SubComponents/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/SubComponents/Navigation';
+import { HomePage } from './components/Home';
 
 function App() {
     const {loginModal, signupModal} = useAuthModal()
@@ -24,7 +25,7 @@ function App() {
 			{isLoaded && (
 				<Switch>
                     <Route exact path='/'>
-
+                        <HomePage></HomePage>
                     </Route>
 
 				</Switch>

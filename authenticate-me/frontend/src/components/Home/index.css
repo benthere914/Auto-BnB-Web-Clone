@@ -1,0 +1,24 @@
+.cards{
+    display: flex;
+}
+.card{
+    border: solid greenyellow 5px;
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+    padding: 10px;
+    list-style: none;
+}
+.card a{
+    text-decoration: none;
+}
+
+.card h2{
+    text-align: center;
+}
+
+.card img{
+    overflow: cover;
+    width: 250px;
+
+}

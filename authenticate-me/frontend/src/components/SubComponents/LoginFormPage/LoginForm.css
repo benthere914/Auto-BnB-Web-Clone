@@ -12,6 +12,8 @@ form {
 	display: flex;
 	flex-direction: column;
 	border: solid grey 5px;
+    background-color: white;
+    z-index: 1;
 }
 
 form button {
