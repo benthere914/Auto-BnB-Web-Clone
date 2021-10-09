@@ -9,12 +9,11 @@ import './Navigation.css';
 import { useState } from 'react';
 function Navigation() {
     const [dropDown, setDropDown] = useState(false);
-    console.log(dropDown, 'dropdonw')
 	return (
 		<ul className='navbar'>
 			<li>
 				<NavLink className="home" exact to="/">
-					CarBnN
+					CarBnB
 				</NavLink>
 			</li>
             <li>
