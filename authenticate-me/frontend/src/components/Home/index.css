@@ -1,12 +1,13 @@
 .cards{
     display: flex;
+    justify-content: space-around;
 }
 .card{
     border: solid greenyellow 5px;
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 450px;
     margin: 10px;
-    padding: 10px;
+    padding: 0;
     list-style: none;
 }
 .card a{
@@ -18,7 +19,8 @@
 }
 
 .card img{
-    overflow: cover;
-    width: 250px;
-
+    width: 500px;
+    overflow: hidden;
+    object-fit: hidden;
+    margin: 0;
 }

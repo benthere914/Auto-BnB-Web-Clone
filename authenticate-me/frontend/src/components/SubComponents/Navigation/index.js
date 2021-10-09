@@ -6,7 +6,7 @@ import { TopButton } from './TopButton';
 import { DropDownMenu } from './DropDownMenu';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function Navigation() {
     const [dropDown, setDropDown] = useState(false);
 	return (
@@ -17,8 +17,8 @@ function Navigation() {
 				</NavLink>
 			</li>
             <li>
-                <TopButton dropDown={dropDown} setDropDown={setDropDown}/>
-                {dropDown && <DropDownMenu dropDown={dropDown} setDropDown={setDropDown}/>}
+                <TopButton setDropDown={setDropDown}/>
+                {dropDown && <DropDownMenu setDropDown={setDropDown}/>}
 				{/* {isLoaded && sessionLinks} */}
             </li>
 		</ul>
