@@ -26,7 +26,7 @@ export const DropDownMenu = ({setDropDown}) => {
                 </>
             )}
             <li className="breakLine"></li>
-            <li className='hostLink' onClick={() => {setDropDown(false);setLoginModal(true)}}>Host Your Car</li>
+            <li className='hostLink' onClick={() => {setDropDown(false);setLoginModal(!loggedIn)}}>Host Your Car</li>
         </ul>
     )
 }
