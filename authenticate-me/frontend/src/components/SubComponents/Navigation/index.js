@@ -20,12 +20,7 @@ function Navigation() {
 				</li>
 				<li>
 					<TopButton setNavDropDown={setNavDropDown} />
-					{/* {isLoaded && sessionLinks} */}
-                {NavDropDown && (
-                    <div className="menuHolder">
-                        <DropDownMenu setNavDropDown={setNavDropDown} />
-                    </div>
-                )}
+                    {NavDropDown && (<DropDownMenu setNavDropDown={setNavDropDown} />)}
 				</li>
 			</ul>
 

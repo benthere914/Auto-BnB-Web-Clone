@@ -8,9 +8,8 @@ import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import { AuthModalProvider, NavDropDownProvider } from './Context/';
-
+import { useNavDropDown } from './Context/navbarDropDown';
 const store = configureStore();
-
 if (process.env.NODE_ENV !== 'production') {
 	restoreCSRF();
 	window.csrfFetch = csrfFetch;
@@ -18,13 +17,13 @@ if (process.env.NODE_ENV !== 'production') {
 	window.sessionActions = sessionActions;
 }
 
-function Root() {
+const Root = () => {
 	return (
 		<Provider store={store}>
 			<NavDropDownProvider>
 				<AuthModalProvider>
 					<BrowserRouter>
-						<App />
+						<App/>
 					</BrowserRouter>
 				</AuthModalProvider>
 			</NavDropDownProvider>

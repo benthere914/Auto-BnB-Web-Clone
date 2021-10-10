@@ -7,8 +7,11 @@ import SignupFormPage from './components/SubComponents/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/SubComponents/Navigation';
 import { HomePage } from './components/Home';
+import { useNavDropDown } from './Context/navbarDropDown';
+
 
 function App() {
+    const {NavDropDown, setNavDropDown} = useNavDropDown();
     const {loginModal, signupModal} = useAuthModal()
 
 	const dispatch = useDispatch();
@@ -19,17 +22,19 @@ function App() {
 	}, [dispatch]);
 	return (
 		<>
-            {loginModal?(<LoginFormPage/>): null}
-            {signupModal?(<SignupFormPage/>): null}
-			<Navigation/>
-			{isLoaded && (
-				<Switch>
-                    <Route exact path='/'>
-                        <HomePage></HomePage>
-                    </Route>
+            <div onClick={()=>NavDropDown?setNavDropDown(false): null}>
 
-				</Switch>
-			)}
+                {loginModal?(<LoginFormPage/>): null}
+                {signupModal?(<SignupFormPage/>): null}
+                <Navigation/>
+                {isLoaded && (
+                    <Switch>
+                        <Route exact path='/'>
+                            <HomePage></HomePage>
+                        </Route>
+                    </Switch>
+                )}
+            </div>
 		</>
 	);
 }
