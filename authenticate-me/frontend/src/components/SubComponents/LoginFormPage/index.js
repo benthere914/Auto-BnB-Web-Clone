@@ -29,7 +29,8 @@ const LoginFormPage = () => {
 	return (
 		<div id="parent">
 
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className='loginForm'>
+                <h2>Log In</h2>
                 <i className='fas fa-window-close' onClick={() => setLoginModal(false)}></i>
 				{errors.length > 0 && (
 					<ul>
@@ -38,26 +39,23 @@ const LoginFormPage = () => {
 						))}
 					</ul>
 				)}
-                <div>
-                </div>
-				<label>
-					Username or Email
-					<input
-						type="text"
-						value={credential}
-						onChange={(e) => setCredential(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
+
+				<label htmlFor='username'>Username or Email</label>
+                <input
+                    name='username'
+                    type="text"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                />
+				<label htmlFor='password'>Password</label>
+                <input
+                    name='password'
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
 				<button type="submit">Log In</button>
                 <p>Don't Have An Account? Sign Up <span className="switchModals" onClick={()=> {setLoginModal(false);setSignupModal(true)}}>Here</span></p>
 			</form>

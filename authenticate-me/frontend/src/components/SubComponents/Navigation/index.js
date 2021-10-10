@@ -7,21 +7,28 @@ import { DropDownMenu } from './DropDownMenu';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useState, useEffect } from 'react';
+import { useNavDropDown } from '../../../Context/navbarDropDown';
 function Navigation() {
-    const [dropDown, setDropDown] = useState(false);
+    const {NavDropDown, setNavDropDown} = useNavDropDown()
+	// const [dropDown, setDropDown] = useState(false);
 	return (
-		<ul className='navbar'>
-			<li>
-				<NavLink className="home" exact to="/">
-					CarBnB
-				</NavLink>
-			</li>
-            <li>
-                <TopButton setDropDown={setDropDown}/>
-                {dropDown && <DropDownMenu setDropDown={setDropDown}/>}
-				{/* {isLoaded && sessionLinks} */}
-            </li>
-		</ul>
+			<ul className="navbar">
+				<li>
+					<NavLink className="home" exact to="/">
+						CarBnB
+					</NavLink>
+				</li>
+				<li>
+					<TopButton setNavDropDown={setNavDropDown} />
+					{/* {isLoaded && sessionLinks} */}
+                {NavDropDown && (
+                    <div className="menuHolder">
+                        <DropDownMenu setNavDropDown={setNavDropDown} />
+                    </div>
+                )}
+				</li>
+			</ul>
+
 	);
 }
 

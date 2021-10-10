@@ -33,8 +33,8 @@ function SignupFormPage() {
 
 	return (
 		<div id="parent">
-
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className='signupForm'>
+                <h2>Sign Up</h2>
                 <i className='fas fa-window-close' onClick={()=> setSignupModal(false)}></i>
                 {!!errors.length &&
 				<ul>
@@ -42,44 +42,39 @@ function SignupFormPage() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>}
+				<label htmlFor='email'>Email</label>
+                <input
+                    name='email'
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
 
-
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
+				<label htmlFor='username'>Username</label>
+                <input
+                    name='username'
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+				<label htmlFor='password'>Password</label>
+                <input
+                    name='password'
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+				<label htmlFor='confirm'> Confirm Password</label>
+                <input
+                    name='confirm'
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                />
 				<button type="submit">Sign Up</button>
                 <p>Already Have An Account? Log In <span className="switchModals" onClick={()=> {setSignupModal(false);setLoginModal(true)}}>Here</span></p>
 			</form>

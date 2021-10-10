@@ -7,7 +7,7 @@ import App from './App';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
-import { AuthModalProvider } from './Context/AuthModals';
+import { AuthModalProvider, NavDropDownProvider } from './Context/';
 
 const store = configureStore();
 
@@ -21,11 +21,13 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
 	return (
 		<Provider store={store}>
-			<AuthModalProvider>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</AuthModalProvider>
+			<NavDropDownProvider>
+				<AuthModalProvider>
+					<BrowserRouter>
+						<App />
+					</BrowserRouter>
+				</AuthModalProvider>
+			</NavDropDownProvider>
 		</Provider>
 	);
 }

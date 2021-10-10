@@ -1,6 +1,6 @@
-export const TopButton = ({dropDown,setDropDown}) => {
+export const TopButton = ({setNavDropDown}) => {
     return (
-        <div className="navButton" onMouseEnter={() => {setDropDown(true)}} onMouseLeave={() => {setDropDown(false); console.log('off')}}>
+        <div className="navButton" onClick={() => {setNavDropDown(true)}} >
             <i className="fas fa-bars"></i>
             <i className="fas fa-user"></i>
         </div>

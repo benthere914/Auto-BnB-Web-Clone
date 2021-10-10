@@ -8,11 +8,14 @@
     margin: 0;
     position: sticky;
     top: 0;
-
+    background-color: white;
+    z-index: 1;
 }
+
 .navbar li{
     list-style: none;
 }
+
 .home{
     text-decoration: none;
     color: rgb(255, 56, 92);
@@ -21,46 +24,43 @@
     font-weight: 900;
 
 }
+
 .navButton{
     position: relative;
     right: 170px;
     border: black solid 1px;
-    padding: 5px;
-    border-radius: 30%;
-    width: 50px;
     background-color: white;
+    padding: 5px 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
 }
+
 .navButton i{
     padding: 5px;
 }
 
 .dropMenu{
-    box-sizing: border-box;
-    position: absolute;
-    right: 150px;
-    top: 54px;
-    border-top: solid black 2px;
-    border-bottom: solid black 2px;
-    border-left: solid black 2px;
-    border-right: solid black 12px;
-    padding: 0;
-}
-.dropMenu .breakLine{
-    border-top: solid black 1px;
-    height: 0px;
-    padding: 0px;
-    margin: 0;
-}
-.dropMenu li{
-    position: relative;
     background-color: white;
-    border-right: black solid 2px;
-    padding: 5px;
-    margin: 0;
-    width: 100%;
-    cursor: pointer;
+    position: fixed;
+    right: 150px;
+    border-radius: 20%;
+    list-style: none;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-.dropMenu li:hover{
+.dropMenu h3{
+    font-size: 15px;
+    font-weight: 300;
+    padding-left: 10px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.dropMenu h3:hover{
     background-color: lightblue;
+    cursor: pointer;
 }
