@@ -16,7 +16,7 @@ const LoginFormPage = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		return dispatch(sessionActions.login({ credential, password })).then(() => setLoginModal(false)).catch(
+		return dispatch(sessionActions.login({ credential, password })).then(() => setLoginModal(false)).then(() => setAuthModalOver(false)).catch(
 			async (res) => {
 				const data = await res.json();
 				if (data && data.errors) setErrors(data.errors);
