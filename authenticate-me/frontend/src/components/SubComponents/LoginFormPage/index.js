@@ -31,7 +31,7 @@ const LoginFormPage = () => {
 
 			<form onSubmit={handleSubmit} className='loginForm'>
                 <h2>Log In</h2>
-                <i className='fas fa-window-close' onClick={() => setLoginModal(false)}></i>
+                {/* <i className='fas fa-window-close' onClick={() => setLoginModal(false)}></i> */}
 				{errors.length > 0 && (
 					<ul>
 						{errors.map((error, idx) => (

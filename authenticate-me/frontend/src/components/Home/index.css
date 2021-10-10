@@ -8,6 +8,7 @@
     margin: 10px;
     padding: 0;
     list-style: none;
+    transition: all .2s ease-in-out;
 }
 .card a{
     text-decoration: none;
@@ -22,4 +23,9 @@
     overflow: hidden;
     object-fit: hidden;
     margin: 0;
+    border-radius: 20px;
+}
+
+.card:hover{
+    transform: scale(1.015);
 }

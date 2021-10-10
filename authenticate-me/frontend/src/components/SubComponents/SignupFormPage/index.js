@@ -35,7 +35,7 @@ function SignupFormPage() {
 		<div id="parent" onMouseEnter={()=> setAuthModalOver(true)} onMouseLeave={()=> setAuthModalOver(false)}>
 			<form onSubmit={handleSubmit} className='signupForm'>
                 <h2>Sign Up</h2>
-                <i className='fas fa-window-close' onClick={()=> setSignupModal(false)}></i>
+                {/* <i className='fas fa-window-close' onClick={()=> setSignupModal(false)}></i> */}
                 {!!errors.length &&
 				<ul>
 					{errors.map((error, idx) => (
