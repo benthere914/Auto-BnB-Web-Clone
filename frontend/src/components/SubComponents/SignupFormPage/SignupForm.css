@@ -1,0 +1,66 @@
+
+form.signupForm .fa-window-close{
+    position: relative;
+    top: -25px;
+    right: -458px;
+    width: min-content;
+    cursor: pointer;
+}
+
+form.signupForm p .switchModals{
+    cursor: pointer;
+    font-weight: 900;
+}
+
+
+form.signupForm{
+    z-index: 5;
+    background-color: white;
+    left: 700px;
+    top: 200px;
+    position: absolute;
+    width: 500px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 70vmax rgba(0,0,0,.5);
+
+}
+
+form.signupForm input{
+    width: 80%;
+    font-size: 15px;
+    padding: 7px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid lightgray;
+    background-color: white;
+    text-decoration: none;
+}
+
+form.signupForm label{
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    align-self: flex-start;
+}
+
+form.signupForm > button{
+    margin-top: 10px;
+    width: 405px;
+    height: 30px;
+    font-size: 20px;
+    background-color: rgb(23,163,186);
+    color: white;
+    outline: none;
+    border: 0px solid;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
