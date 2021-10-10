@@ -6,7 +6,6 @@ export const DropDownMenu = ({setNavDropDown}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     let loggedIn;
-    console.log(user)
     if (user){
         loggedIn = !!(user.username)
     }
@@ -27,6 +26,7 @@ export const DropDownMenu = ({setNavDropDown}) => {
                 <>
                 <h3 className="AuthLink" onClick={() => {setSignupModal(false);setLoginModal(true);setNavDropDown(false)}}>Log In</h3>
                 <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(true);setNavDropDown(false)}}>Sign Up</h3>
+                <h3 className='AuthLink' onClick={() => {dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))}}>Log In As Demo</h3>
                 </>
             )}
         </div>
