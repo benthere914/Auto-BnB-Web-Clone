@@ -19,7 +19,7 @@ function SignupFormPage() {
 			setErrors([]);
 			return dispatch(
 				sessionActions.signup({ email, username, password })
-			).then(() => setSignupModal(false)).catch(async (res) => {
+			).then(() => setSignupModal(false)).then(() => (setAuthModalOver(false))).catch(async (res) => {
 				const data = await res.json();
 				if (data && data.errors) setErrors(data.errors);
 			});
