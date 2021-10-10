@@ -5,7 +5,7 @@ import * as sessionActions from '../../../store/session';
 import './SignupForm.css';
 import { useAuthModal } from '../../../Context/AuthModals';
 function SignupFormPage() {
-    const { setSignupModal, setLoginModal } = useAuthModal();
+    const { setSignupModal, setLoginModal, setAuthModalOver } = useAuthModal();
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [email, setEmail] = useState('');
@@ -32,7 +32,7 @@ function SignupFormPage() {
 	};
 
 	return (
-		<div id="parent">
+		<div id="parent" onMouseEnter={()=> setAuthModalOver(true)} onMouseLeave={()=> setAuthModalOver(false)}>
 			<form onSubmit={handleSubmit} className='signupForm'>
                 <h2>Sign Up</h2>
                 <i className='fas fa-window-close' onClick={()=> setSignupModal(false)}></i>

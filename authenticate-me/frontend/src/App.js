@@ -12,17 +12,23 @@ import { useNavDropDown } from './Context/navbarDropDown';
 
 function App() {
     const {NavDropDown, setNavDropDown} = useNavDropDown();
-    const {loginModal, signupModal} = useAuthModal()
+    const {loginModal, setLoginModal, signupModal, setSignupModal, authModalOver} = useAuthModal()
 
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
-
+    const clickHandler = () => {
+        if (NavDropDown){setNavDropDown(false)}
+        if (!authModalOver){
+            if (loginModal){setLoginModal(false)}
+            if (signupModal){setSignupModal(false)}
+        }
+    }
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 	}, [dispatch]);
 	return (
 		<>
-            <div onClick={()=>NavDropDown?setNavDropDown(false): null}>
+            <div onClick={()=>clickHandler()}>
 
                 {loginModal?(<LoginFormPage/>): null}
                 {signupModal?(<SignupFormPage/>): null}

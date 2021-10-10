@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginFormPage = () => {
-    const {setLoginModal, setSignupModal} = useAuthModal();
+    const {setLoginModal, setSignupModal, setAuthModalOver} = useAuthModal();
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [credential, setCredential] = useState('');
@@ -27,7 +27,7 @@ const LoginFormPage = () => {
 	};
 
 	return (
-		<div id="parent">
+		<div id="parent" onMouseEnter={()=> setAuthModalOver(true)} onMouseLeave={()=> setAuthModalOver(false)}>
 
 			<form onSubmit={handleSubmit} className='loginForm'>
                 <h2>Log In</h2>
