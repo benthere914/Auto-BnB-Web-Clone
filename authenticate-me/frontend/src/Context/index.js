@@ -1,3 +1,4 @@
-import { LogInSignUpModalProvider } from "./AuthModals";
+import { AuthModalProvider } from "./AuthModals";
+import { NavDropDownProvider } from "./navbarDropDown";
 
-export { LogInSignUpModalProvider }
+export { AuthModalProvider, NavDropDownProvider }

@@ -2,11 +2,10 @@ import { useAuthModal } from "../../../Context/AuthModals";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from '../../../store/session';
 
-export const DropDownMenu = ({setDropDown}) => {
+export const DropDownMenu = ({setNavDropDown}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     let loggedIn;
-    console.log(user)
     if (user){
         loggedIn = !!(user.username)
     }
@@ -14,19 +13,22 @@ export const DropDownMenu = ({setDropDown}) => {
 
 
     return (
-        <ul className='dropMenu' onMouseEnter={() => {setDropDown(true)}} onMouseLeave={() => setDropDown(false)}>
+        <div className='dropMenu'>
             {loggedIn? (
                 <>
-                    <li className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(false);setDropDown(false);dispatch(sessionActions.logout())}}>Log Out</li>
+                    <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(false);setNavDropDown(false);dispatch(sessionActions.logout())}}>Log Out</h3>
+                    <h3>My Account</h3>
+                    <h3>My Profile</h3>
+                    {/* <h3 className="breakLine"></h3> */}
+                    <h3 className='hostLink' onClick={() => {setNavDropDown(false);setLoginModal(!loggedIn)}}>Host Your Car</h3>
                 </>
             ): (
                 <>
-                <li className="AuthLink" onClick={() => {setSignupModal(false);setLoginModal(true);setDropDown(false)}}>Log In</li>
-                <li className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(true);setDropDown(false)}}>Sign Up</li>
+                <h3 className="AuthLink" onClick={() => {setSignupModal(false);setLoginModal(true);setNavDropDown(false)}}>Log In</h3>
+                <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(true);setNavDropDown(false)}}>Sign Up</h3>
+                <h3 className='AuthLink' onClick={() => {dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))}}>Log In As Demo</h3>
                 </>
             )}
-            <li className="breakLine"></li>
-            <li className='hostLink'>Host Your Car</li>
-        </ul>
+        </div>
     )
 }

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useAuthModal } from '../../../Context/AuthModals';
-import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginFormPage = () => {
-    const {setLoginModal, setSignupModal} = useAuthModal();
+    const {setLoginModal, setSignupModal, setAuthModalOver} = useAuthModal();
 	const dispatch = useDispatch();
-	const sessionUser = useSelector((state) => state.session.user);
 	const [credential, setCredential] = useState('');
 	const [password, setPassword] = useState('');
 	const [errors, setErrors] = useState([]);
@@ -27,10 +25,11 @@ const LoginFormPage = () => {
 	};
 
 	return (
-		<div id="parent">
+		<div id="parent" onMouseEnter={()=> setAuthModalOver(true)} onMouseLeave={()=> setAuthModalOver(false)}>
 
-			<form onSubmit={handleSubmit}>
-                <i className='fas fa-window-close' onClick={() => setLoginModal(false)}></i>
+			<form onSubmit={handleSubmit} className='loginForm'>
+                <h2>Log In</h2>
+                {/* <i className='fas fa-window-close' onClick={() => setLoginModal(false)}></i> */}
 				{errors.length > 0 && (
 					<ul>
 						{errors.map((error, idx) => (
@@ -38,26 +37,23 @@ const LoginFormPage = () => {
 						))}
 					</ul>
 				)}
-                <div>
-                </div>
-				<label>
-					Username or Email
-					<input
-						type="text"
-						value={credential}
-						onChange={(e) => setCredential(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
+
+				<label htmlFor='username'>Username or Email</label>
+                <input
+                    name='username'
+                    type="text"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                />
+				<label htmlFor='password'>Password</label>
+                <input
+                    name='password'
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
 				<button type="submit">Log In</button>
                 <p>Don't Have An Account? Sign Up <span className="switchModals" onClick={()=> {setLoginModal(false);setSignupModal(true)}}>Here</span></p>
 			</form>
