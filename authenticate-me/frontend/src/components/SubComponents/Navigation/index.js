@@ -1,12 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useAuthModal } from '../../../Context/AuthModals';
 import { TopButton } from './TopButton';
 import { DropDownMenu } from './DropDownMenu';
-import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import { useState, useEffect } from 'react';
 import { useNavDropDown } from '../../../Context/navbarDropDown';
 function Navigation() {
     const {NavDropDown, setNavDropDown} = useNavDropDown()

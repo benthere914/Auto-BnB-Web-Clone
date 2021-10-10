@@ -30,4 +30,9 @@
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 16px;
+    transition: all 0s ease-in-out;
+}
+
+.centerContent button:hover{
+    transform: scale(1.01);
 }
