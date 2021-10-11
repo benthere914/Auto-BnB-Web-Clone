@@ -18,7 +18,7 @@ form.loginForm{
     background-color: white;
     left: 700px;
     top: 200px;
-    position: absolute;
+    position: fixed;
     width: 500px;
     height: 350px;
     display: flex;

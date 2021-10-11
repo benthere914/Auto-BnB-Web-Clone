@@ -1,0 +1,71 @@
+.myAccountModal{
+    box-sizing: border-box;
+    z-index: 5;
+    background-color: white;
+    left: 700px;
+    top: 200px;
+    position: fixed;
+    display: flex;
+    border: solid 1px black;
+    box-shadow: 0 0 0 70vmax rgba(0,0,0,.5);
+}
+
+.fa-times{
+    position: fixed;
+    right: 505px;
+    top: 200px;
+    cursor: pointer;
+}
+
+.mainChangeDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputTextBox{
+    width: 80%;
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+}
+
+.mainChangeDiv div:not(.buttons){
+    display: flex;
+    flex-direction: column;
+    /* border: black solid 2px; */
+    width:  70%;
+    align-items: center;
+}
+
+.mainChangeDiv div:not(.buttons) input{
+    width: 70%;
+    /* height: 20px; */
+    font-size: 15px;
+    margin-top: 3px;
+}
+
+.mainChangeDiv div:not(.buttons) label{
+    margin-top: 20px;
+    width: 70%;
+    text-align: left;
+}
+
+.buttons{
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.buttons button{
+    width: 40%;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
