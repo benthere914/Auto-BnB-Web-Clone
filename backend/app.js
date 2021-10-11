@@ -23,6 +23,7 @@ app.use(csurf({
 }))
 app.use(routes);
 app.use((_req, _res, next) => {
+    console.log(_req, _res)
     const err = new Error("The requested resource couldn't be found.");
     err.title = "Resource Not Found";
     err.errors = ["The requested resource couldn't be found."];
