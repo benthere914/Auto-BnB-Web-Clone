@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import * as userActions from '../../../../store/user'
 export const ChangeEmail = ({ data }) => {
+    const user = useSelector(state=> state.session.user)
 	const [email, setEmail] = useState();
 	return (
 		<div className="mainChangeDiv">
@@ -10,7 +13,8 @@ export const ChangeEmail = ({ data }) => {
 					name="currentEmail"
 					className="inputTextBox"
 					type="text"
-					value={'benthere914@gmail.com'}
+					value={user.email}
+                    onChange={() => 1}
 				></input>
 			</div>
 			<div>
@@ -24,7 +28,7 @@ export const ChangeEmail = ({ data }) => {
 				/>
 			</div>
 			<div className="buttons">
-				<button>Submit</button>
+				<button onClick={()=> 1}>Submit</button>
 				<button onClick={() => data.funcs.back('email')}>Back</button>
 			</div>
 		</div>

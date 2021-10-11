@@ -10,7 +10,7 @@ export const DropDownMenu = ({setNavDropDown}) => {
         loggedIn = !!(user.username)
     }
     const {setLoginModal, setSignupModal} = useAuthModal()
-    const {myAccountModal, setMyAccountModal} = useMyAccountModal();
+    const {setMyAccountModal} = useMyAccountModal();
 
 
     return (

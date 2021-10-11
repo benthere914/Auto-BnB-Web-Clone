@@ -10,7 +10,7 @@ export const DefaultView = ({data}) => {
             <h2 className='title'>My Account</h2>
             <div className='topDiv'>
                 <div className='photoDiv'>
-                    <img className='profilePhoto' src='https://aux.iconspalace.com/uploads/15592331301467422446.png' alt='Profile Photo'></img>
+                    <img className='profilePhoto' src='https://aux.iconspalace.com/uploads/15592331301467422446.png' alt='Profile'></img>
                 </div>
                 <div className='myAccountData'>
                     <h2 className='dataTitle'>User Name</h2>
