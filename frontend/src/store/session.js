@@ -25,9 +25,7 @@ const removeUser = () => {
 };
 
 export const changeUsername = (user) => async (dispatch) => {
-    console.log(user)
     const {id, username} = user;
-    console.log(id, username)
     const response = await csrfFetch(`/api/users/${id}`,
     {
         method: 'PUT',
@@ -96,7 +94,6 @@ const sessionReducer = (state = initialState, action) => {
 	switch (action.type) {
         case ALTER_USER:
 			newState.user[action.payload.userData] = action.payload.data;
-            console.log(newState)
 			return newState;
 		case SET_USER:
 			newState = Object.assign({}, state);

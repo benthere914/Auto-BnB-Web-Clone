@@ -1,10 +1,10 @@
 
 
-export const Top = () => {
+export const Top = ({data}) => {
     return (
         <>
-        <h2>3+ rides available</h2>
-        <h1>type</h1>
+        <h2>{`${data.length}+`}</h2>
+        <h2>{data.type}</h2>
         </>
     )
 }
