@@ -42,6 +42,9 @@ function App() {
                         <Route exact path='/'>
                             <HomePage></HomePage>
                         </Route>
+                        <Route path='/types/:typeId'>
+                            <p>types at type id</p>
+                        </Route>
                     </Switch>
                 )}
             </div>

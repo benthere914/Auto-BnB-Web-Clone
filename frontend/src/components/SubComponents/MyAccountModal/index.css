@@ -12,8 +12,6 @@
 
 .fa-times{
     position: fixed;
-    right: 505px;
-    top: 200px;
     cursor: pointer;
 }
 
@@ -36,14 +34,12 @@
 .mainChangeDiv div:not(.buttons){
     display: flex;
     flex-direction: column;
-    /* border: black solid 2px; */
     width:  70%;
     align-items: center;
 }
 
 .mainChangeDiv div:not(.buttons) input{
     width: 70%;
-    /* height: 20px; */
     font-size: 15px;
     margin-top: 3px;
 }
