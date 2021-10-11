@@ -57,7 +57,10 @@ module.exports = (sequelize, DataTypes) => {
 	);
 
 	User.associate = function (models) {
-		// associations can be defined here
+        User.belongsToMany(models.Spot, {through: 'Review', otherKey: 'spotId', foreignKey: 'userId'})
+        User.belongsToMany(models.Spot, {through: 'Booking', otherKey: 'spotId', foreignKey: 'userId'})
+
+
 	};
 
 	User.prototype.toSafeObject = function () {
@@ -69,6 +72,7 @@ module.exports = (sequelize, DataTypes) => {
 	User.prototype.validatePassword = function (password) {
 		return bcrypt.compareSync(password, this.hashedPassword.toString());
 	};
+
 
 	User.getCurrentUserById = async function (id) {
 		return await User.scope('currentUser').findByPk(id);
