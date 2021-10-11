@@ -1,7 +1,7 @@
 import { useAuthModal } from "../../../Context/AuthModals";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from '../../../store/session';
-
+import { useMyAccountModal } from "../../../Context/MyAccountModal";
 export const DropDownMenu = ({setNavDropDown}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
@@ -10,6 +10,7 @@ export const DropDownMenu = ({setNavDropDown}) => {
         loggedIn = !!(user.username)
     }
     const {setLoginModal, setSignupModal} = useAuthModal()
+    const {myAccountModal, setMyAccountModal} = useMyAccountModal();
 
 
     return (
@@ -17,7 +18,7 @@ export const DropDownMenu = ({setNavDropDown}) => {
             {loggedIn? (
                 <>
                     <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(false);setNavDropDown(false);dispatch(sessionActions.logout())}}>Log Out</h3>
-                    <h3>My Account</h3>
+                    <h3 onClick={() => setMyAccountModal(true)}>My Account</h3>
                     <h3>My Profile</h3>
                     {/* <h3 className="breakLine"></h3> */}
                     <h3 className='hostLink' onClick={() => {setNavDropDown(false);setLoginModal(!loggedIn)}}>Host Your Car</h3>

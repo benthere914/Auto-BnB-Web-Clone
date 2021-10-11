@@ -1,0 +1,57 @@
+.mainDefaultView{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mainDefaultView > h2{
+    text-align: center;
+}
+.photoDiv{
+    margin: 20px;
+    height: 200px;
+    width: 200px;
+
+}
+
+.profilePhoto{
+    border: solid black 2px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.topDiv{
+    display: flex;
+    flex-direction: row;
+}
+.myAccountData{
+    margin-left: 50px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+}
+.changeLinks{
+    display: flex;
+    justify-content: space-around;
+}
+
+.changeLink{
+    position: relative;
+    top: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+
+
+.dataSquared{
+    padding: 2px;
+    width: 80%;
+    overflow: hidden;
+    border: solid black 2px;
+    background-color: rgb(232,240,254);
+    cursor:default;
+}

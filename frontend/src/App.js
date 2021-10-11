@@ -8,9 +8,12 @@ import * as sessionActions from './store/session';
 import Navigation from './components/SubComponents/Navigation';
 import { HomePage } from './components/Home';
 import { useNavDropDown } from './Context/navbarDropDown';
+import { useMyAccountModal } from './Context/MyAccountModal';
+import { MyAccountModal } from './components/SubComponents/MyAccountModal';
 
 
 function App() {
+    const {myAccountModal, setMyAccountModal} = useMyAccountModal();
     const {NavDropDown, setNavDropDown} = useNavDropDown();
     const {loginModal, setLoginModal, signupModal, setSignupModal, authModalOver} = useAuthModal()
 
@@ -32,6 +35,7 @@ function App() {
 
                 {loginModal?(<LoginFormPage/>): null}
                 {signupModal?(<SignupFormPage/>): null}
+                {myAccountModal?(<MyAccountModal/>):null}
                 <Navigation/>
                 {isLoaded && (
                     <Switch>
