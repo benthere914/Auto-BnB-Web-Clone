@@ -13,7 +13,7 @@ import { MyAccountModal } from './components/SubComponents/MyAccountModal';
 
 
 function App() {
-    const {myAccountModal, setMyAccountModal} = useMyAccountModal();
+    const {myAccountModal} = useMyAccountModal();
     const {NavDropDown, setNavDropDown} = useNavDropDown();
     const {loginModal, setLoginModal, signupModal, setSignupModal, authModalOver} = useAuthModal()
 

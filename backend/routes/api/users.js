@@ -35,4 +35,10 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
 	})
 );
 
+
+router.put('/:id(\\d+)', asyncHandler((req, res) => {
+    console.log(req.body);
+    res.json({'message': 'this is a test'})
+}))
+
 module.exports = router;

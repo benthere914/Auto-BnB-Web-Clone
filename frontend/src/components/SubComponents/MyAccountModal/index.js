@@ -1,14 +1,13 @@
 import './index.css'
 import { useMyAccountModal } from "../../../Context/MyAccountModal";
 import { useEffect, useState } from "react";
-import * as sessionActions from '../../../store/session'
 import { ChangeEmail } from "./ChangeEmail";
 import { ChangeUser } from "./ChangeUsername";
 import { ChangePass } from "./ChangePass";
 import { ChangeImg } from "./ChangeImg";
 import { DefaultView } from "./DefaultView";
 export const MyAccountModal = () => {
-    const {myAccountModal, setMyAccountModal} = useMyAccountModal();
+    const {setMyAccountModal} = useMyAccountModal();
     const [defaultView, setDefaultView] = useState(true);
     const [changeUsername, setChangeUsername] = useState(false);
     const [changeEmail, setChangeEmail] = useState(false);
