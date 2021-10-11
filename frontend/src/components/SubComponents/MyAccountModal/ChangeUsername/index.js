@@ -18,7 +18,7 @@ export const ChangeUser = ({data}) => {
             <div className='buttons'>
                 <button onClick={() => {
                     console.log('start')
-                    sessionActions.changeUsername({id: 16, username});
+                    sessionActions.changeUsername({id: 16, username})
                     console.log('end')
                     }}>Submit</button>
                 <button onClick={() => data.funcs.back('user')}>Back</button>

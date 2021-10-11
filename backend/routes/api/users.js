@@ -36,7 +36,8 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
 );
 
 
-router.put('/:id(\\d+)', asyncHandler((req, res) => {
+router.put('/:id', asyncHandler(async (req, res) => {
+    console.log('in the route')
     console.log(req.body);
     res.json({'message': 'this is a test'})
 }))
