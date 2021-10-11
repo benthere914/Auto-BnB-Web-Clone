@@ -1,4 +1,3 @@
-import './index.css'
 import { useState } from 'react'
 export const ChangeUser = ({data}) => {
     const [username, setUsername] = useState();

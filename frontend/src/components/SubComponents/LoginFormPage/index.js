@@ -11,7 +11,6 @@ const LoginFormPage = () => {
 	const [password, setPassword] = useState('');
 	const [errors, setErrors] = useState([]);
 
-	// if (sessionUser) return <Redirect to="/" />;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -29,7 +28,6 @@ const LoginFormPage = () => {
 
 			<form onSubmit={handleSubmit} className='loginForm'>
                 <h2>Log In</h2>
-                {/* <i className='fas fa-window-close' onClick={() => setLoginModal(false)}></i> */}
 				{errors.length > 0 && (
 					<ul>
 						{errors.map((error, idx) => (

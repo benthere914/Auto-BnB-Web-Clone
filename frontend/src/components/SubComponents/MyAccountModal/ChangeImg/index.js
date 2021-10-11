@@ -1,4 +1,3 @@
-import './index.css'
 export const ChangeImg = ({data}) => {
     return (
         <>

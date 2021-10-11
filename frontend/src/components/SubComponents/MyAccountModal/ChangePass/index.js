@@ -1,4 +1,3 @@
-import './index.css'
 import { useState } from 'react'
 export const ChangePass = ({data}) => {
     const [password, setPassword] = useState();
