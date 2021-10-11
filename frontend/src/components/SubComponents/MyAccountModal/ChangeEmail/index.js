@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import * as userActions from '../../../../store/user'
 export const ChangeEmail = ({ data }) => {
     const user = useSelector(state=> state.session.user)
 	const [email, setEmail] = useState();

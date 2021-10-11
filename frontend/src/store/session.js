@@ -25,16 +25,18 @@ const removeUser = () => {
 };
 
 export const changeUsername = (user) => async (dispatch) => {
+    console.log(user)
     const {id, username} = user;
+    console.log(id, username)
     const response = await csrfFetch(`/api/users/${id}`,
     {
         method: 'PUT',
         body: JSON.stringify({username})
     });
 
-    const data = await response.json();
-    dispatch(alterUser('username', data));
-    return response;
+    // const data = await response.json();
+    // dispatch(alterUser('username', data));
+    // return response;
 }
 
 export const login = (user) => async (dispatch) => {
