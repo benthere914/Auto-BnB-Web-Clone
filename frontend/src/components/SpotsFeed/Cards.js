@@ -11,13 +11,13 @@ export const Cards = ({data}) => {
                     <div>
                         <p>{e[1].author}</p>
                         <p>{e[1].title}</p>
-                        <div>
-                            <p>{`${e[1].mileage} miles`}</p>
-                            <p>{e[1].year}</p>
+                        <div className='mainDetails'>
+                            <p>{`${e[1].mileage} miles, ${e[1].year}`}</p>
+                        <p className='features'>{`${e[1].features[0]}, ${e[1].features[1]}, ${e[1].features[2]}`}</p>
                         </div>
-                        <div>
-                            {e[1].mainFeatures.map(e => (<p>{e}</p>))}
-                        </div>
+                    </div>
+                    <div className='pricePerDayOnFeed'>
+                        <p>{`$${e[1].pricePerDay}/Day`}</p>
                     </div>
                 </div>
             ))}
