@@ -7,7 +7,18 @@ export const Spot = () => {
     let dispatch = useDispatch();
     const {spotId} = useParams();
     useEffect(() => {dispatch(spotActions.loadSpot(+spotId))}, [dispatch])
-    const state = useSelector(state => state.spot);
-    console.log(state)
-    return (<h1>{spotId}</h1>)
+    const { data } = useSelector(state => state.spot);
+    return (
+        <>
+        <div>
+            <h1>{data?.title} by {data?.author.username}</h1>
+        </div>
+        <div>
+            {data?.images.map(e => (<img src={e.url} alt={e.alt}></img>))}
+        </div>
+        <div>
+            <h3>{`Wonderful ${data?.type} hosted by ${data?.author.username}`}</h3>
+        </div>
+        </>
+    )
 }

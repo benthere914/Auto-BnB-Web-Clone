@@ -3,15 +3,19 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Spot, Image, Feature, Review } = require('../../db/models');
+const { User, Spot, Image, Feature, Review, Type } = require('../../db/models');
 const router = express.Router();
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = +req.params.id;
     let spot = await Spot.findOne({where: {id}});
     spot = spot.dataValues;
+    console.log(spot.typeId)
+    let type = await Type.findByPk(spot.typeId);
+    type = type.dataValues.type;
     let ownerId = spot.ownerId;
     let title = spot.title;
+    let author = await User.findByPk(ownerId);
     let description = spot.description;
     let pricePerDay = spot.pricePerDay;
     let mileage = spot.mileage;
@@ -23,11 +27,10 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     for (let i = 0; i < reviews.length; i++){
         reviews[i] = reviews[i].dataValues;
         let author = await User.findByPk(reviews[i].userId);
-        author = {id: author.dataValues.id, username: author.dataValues.username}
+        author = {id: author.dataValues.id, username: author.dataValues.username};
+        reviews[i].author = author;
     }
-    // console.log(spot, ownerId, title, description, pricePerDay, mileage, year, images, mainImage, features, reviews)
-
-    res.json({'data': {ownerId, title, description, pricePerDay, mileage, year, images, mainImage, features, reviews}})
+    res.json({'data': {ownerId, title, author, description, pricePerDay, mileage, year, images, mainImage, features, reviews, type}})
 }))
 
 module.exports = router;

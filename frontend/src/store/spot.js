@@ -41,7 +41,6 @@ const spotReducer = (state = {}, action) => {
             action.payload.data.forEach(e => newState[e.spotId] = e);
             return newState;
         case LOADONE:
-            console.log(action.payload)
             return action.payload
         default:
             return state;
