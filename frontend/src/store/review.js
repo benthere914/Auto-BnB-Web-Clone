@@ -1,9 +1,10 @@
 import { csrfFetch } from './csrf';
 
 
-const LOADAll = 'reviews/load'
-const ADDREVIEW = 'reviews/add'
-const DELETE_REVIEW ='reviews/delete'
+const LOADAll = 'reviews/load';
+const ADDREVIEW = 'reviews/add';
+const DELETE_REVIEW ='reviews/delete';
+const EDIT_REVIEW ='reviews/edit';
 
 const load_reviews = (payload) => {
     return {
@@ -21,7 +22,14 @@ const add_Review = (payload) => {
 
 const delete_review = (payload) => {
     return {
-        type: LOADAll,
+        type: DELETE_REVIEW,
+        payload
+    }
+}
+
+const edit_review = (payload) => {
+    return {
+        type: EDIT_REVIEW,
         payload
     }
 }
@@ -48,11 +56,22 @@ export const deleteReview = (id) => async (dispatch) => {
 	return response;
 };
 
+export const editReview = (id, review) => async (dispatch) => {
+	const response = await csrfFetch(`/api/reviews/${id}`, {'method': 'PUT', 'body': JSON.stringify({review})});
+	const data = await response.json();
+	dispatch(edit_review(data));
+	return response;
+};
+
 const reviewReducer = (state = {}, action) => {
     switch(action.type){
         case LOADAll:
             return action.payload;
         case ADDREVIEW:
+            return action.payload;
+        case EDIT_REVIEW:
+            return action.payload;
+        case DELETE_REVIEW:
             return action.payload;
         default:
             return state;
