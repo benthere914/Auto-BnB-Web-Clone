@@ -23,14 +23,19 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     let images = await Image.findAll({where: {spotId: id}}).map((e) => { return {url: e.dataValues.url, alt: e.dataValues.alt}});
     let mainImage = images[0];
     let features = await Feature.findAll({where: {spotId: id}}).map(e => e.dataValues.feature);
+    res.json({'data': {ownerId, title, author, description, pricePerDay, mileage, year, images, mainImage, features, type}})
+}))
+
+router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
+    const id = +req.params.id;
     let reviews = await Review.findAll({where: {spotId: id}});
-    for (let i = 0; i < reviews.length; i++){
-        reviews[i] = reviews[i].dataValues;
-        let author = await User.findByPk(reviews[i].userId);
-        author = {id: author.dataValues.id, username: author.dataValues.username};
-        reviews[i].author = author;
-    }
-    res.json({'data': {ownerId, title, author, description, pricePerDay, mileage, year, images, mainImage, features, reviews, type}})
+        for (let i = 0; i < reviews.length; i++){
+            reviews[i] = reviews[i].dataValues;
+            let author = await User.findByPk(reviews[i].userId);
+            author = {id: author.dataValues.id, username: author.dataValues.username};
+            reviews[i].author = author;
+        }
+    res.json({reviews})
 }))
 
 module.exports = router;

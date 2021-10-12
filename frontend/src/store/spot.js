@@ -19,6 +19,9 @@ const loadOneSpot = (payload) => {
 }
 
 
+
+
+
 export const loadSpots = (id) => async (dispatch) => {
 	const response = await csrfFetch(`/api/types/${id}/spots`);
 	const data = await response.json();

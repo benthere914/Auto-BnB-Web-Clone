@@ -10,7 +10,7 @@ export const SpotsFeed = () => {
     const { typeId } = useParams();
     useEffect(() => {
         dispatch(spotActions.loadSpots(typeId))
-    }, []);
+    }, [dispatch, typeId]);
     let spots = useSelector(state => state.spot);
     let arr = Object.entries(spots);
     let length;
