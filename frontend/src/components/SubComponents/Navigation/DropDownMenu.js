@@ -2,7 +2,9 @@ import { useAuthModal } from "../../../Context/AuthModals";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from '../../../store/session';
 import { useMyAccountModal } from "../../../Context/MyAccountModal";
+import { useHistory } from "react-router-dom";
 export const DropDownMenu = ({setNavDropDown}) => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     let loggedIn;
@@ -20,8 +22,7 @@ export const DropDownMenu = ({setNavDropDown}) => {
                     <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(false);setNavDropDown(false);dispatch(sessionActions.logout())}}>Log Out</h3>
                     <h3 onClick={() => setMyAccountModal(true)}>My Account</h3>
                     <h3>My Profile</h3>
-                    {/* <h3 className="breakLine"></h3> */}
-                    <h3 className='hostLink' onClick={() => {setNavDropDown(false);setLoginModal(!loggedIn)}}>Host Your Car</h3>
+                    <h3 className='hostLink' onClick={() => {setNavDropDown(false);setLoginModal(!loggedIn);history.push('/host')}}>Host Your Car</h3>
                 </>
             ): (
                 <>
