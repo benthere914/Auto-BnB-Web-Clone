@@ -31,9 +31,8 @@ router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
     let reviews = await Review.findAll({where: {spotId}});
         for (let i = 0; i < reviews.length; i++){
             reviews[i] = reviews[i].dataValues;
-            console.log(reviews[i])
             let author = await User.findByPk(reviews[i].userId);
-            author = {id: author.dataValues.id, username: author.dataValues.username};
+            author = {id: author.dataValues.id, username: author.dataValues.username, email: author.dataValues.email};
             reviews[i].author = author;
         }
         console.log(reviews[0])

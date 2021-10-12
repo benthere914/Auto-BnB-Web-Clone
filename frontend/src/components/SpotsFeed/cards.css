@@ -1,22 +1,44 @@
 .spots{
+    position: relative;
+    left: 500px;
     display: flex;
     flex-direction: column;
 }
 
 .spot{
+    padding: 0;
+    box-sizing: border-box;
     display: flex;
     cursor: pointer;
-    transition: all .2s ease-in-out;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    width: 777px;
+
 }
 
-.spot:hover{
-    transform: scale(1.02);
+.mainDetails{
+    position: relative;
+    bottom: 10px;
+    border-top: black solid 1px;
+
+}
+
+.pricePerDayOnFeed{
+    position: relative;
+    left: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .spotMainImg{
     width: 300px;
-    height: 250px;
+    height: 255px;
     object-fit: cover;
-    margin: 0;
+    margin: 0 15px 0 0;
     border-radius: 20px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+
 }

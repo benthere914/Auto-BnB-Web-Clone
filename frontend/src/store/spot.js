@@ -30,7 +30,7 @@ export const loadSpots = (id) => async (dispatch) => {
 };
 
 export const loadSpot = (id) => async (dispatch) => {
-	const response = await csrfFetch(`/api/spots/${id}`);
+	const response = await csrfFetch(`/api/spots/${+id}`);
 	const data = await response.json();
 	dispatch(loadOneSpot(data));
 	return response;

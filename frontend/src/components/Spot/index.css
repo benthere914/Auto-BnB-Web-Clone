@@ -1,0 +1,50 @@
+.mainSpotPage{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+
+.leftSide{
+    position: relative;
+    left: 50px;
+    width: 1200px;
+    height: 700px;
+}
+
+.spotImage{
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    width: 1200px;
+    height: 700px;
+}
+
+.rightSide{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 100px;
+    top: 40px;
+}
+
+.reviews{
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    height: 300px;
+    width: 500px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
+
+.newReview{
+    display: flex;
+    flex-direction: column;
+}
+
+.bookAppointment{
+    height: 300px;
+    width: 500px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+
+}

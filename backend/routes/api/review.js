@@ -13,7 +13,12 @@ router.post('/', asyncHandler(async (req, res) => {
     console.log(req.body);
     const reviews = await Review.findAll({where: {spotId}});
     console.log(reviews)
-    reviews.map(e => e.dataValues)
+    for (let i = 0; i < reviews.length; i++){
+        reviews[i] = reviews[i].dataValues;
+        let author = await User.findByPk(reviews[i].userId);
+        author = {id: author.dataValues.id, username: author.dataValues.username, email: author.dataValues.email};
+        reviews[i].author = author;
+    }
     res.json({reviews})
 }))
 
@@ -22,6 +27,27 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     let spotId = review.dataValues.spotId;
     await review.destroy();
     let reviews = await Review.findAll({where: {spotId}});
+    for (let i = 0; i < reviews.length; i++){
+        reviews[i] = reviews[i].dataValues;
+        let author = await User.findByPk(reviews[i].userId);
+        author = {id: author.dataValues.id, username: author.dataValues.username, email: author.dataValues.email};
+        reviews[i].author = author;
+    }
+    console.log(reviews)
+    res.json({reviews})
+}))
+
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+    let review = await Review.findByPk(req.params.id);
+    review.review = req.body.review;
+    await review.save();
+    let reviews = await Review.findAll({where: {spotId: review.dataValues.spotId}});
+    for (let i = 0; i < reviews.length; i++){
+        reviews[i] = reviews[i].dataValues;
+        let author = await User.findByPk(reviews[i].userId);
+        author = {id: author.dataValues.id, username: author.dataValues.username, email: author.dataValues.email};
+        reviews[i].author = author;
+    }
     res.json({reviews})
 }))
 
