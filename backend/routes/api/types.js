@@ -20,18 +20,20 @@ router.get('/:id/spots', asyncHandler( async (req, res) => {
         let spotId = spots[i].id;
         let ownerId = spots[i].ownerId;
         let title = spots[i].title;
+        let user = await User.findOne({where: {id: ownerId}});
+        let author = user.username
         let description = spots[i].description;
         let type = spots[i].Type.dataValues.type;
         let pricePerDay = spots[i].pricePerDay;
         let mileage = spots[i].mileage;
         let year = spots[i].year;
-        let images = await Image.findAll({where: {spotId}}).map(e => e.dataValues.url);
+        let images = await Image.findAll({where: {spotId}}).map((e) => { return {url: e.dataValues.url, alt: e.dataValues.alt}});
         let mainImage = images[0];
         let features = await Feature.findAll({where: {spotId}}).map(e => e.dataValues.feature);
         let mainFeatures = features.slice(0, 3);
-        result.push({spotId, ownerId, title, description, type, pricePerDay, mileage, year, images, mainImage, features, mainFeatures})
+        result.push({spotId, ownerId, title, author, description, type, pricePerDay, mileage, year, images, mainImage, features, mainFeatures})
     }
-    res.json({'data': spots})
+    res.json({'data': result})
 }))
 
 

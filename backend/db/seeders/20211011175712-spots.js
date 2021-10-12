@@ -15,7 +15,7 @@ module.exports = {
           {ownerId: 1, title: 'Ford F150 for rent', description: 'really cool Ford F150', pricePerDay: 50, mileage: 20000, year: 2019,  typeId: 3, createdAt: new Date(), updatedAt: new Date()},
           {ownerId: 1, title: 'Jeep for rent', description: 'really cool Jeep', pricePerDay: 50, mileage: 20000, year: 2019,  typeId: 4, createdAt: new Date(), updatedAt: new Date()},
           {ownerId: 1, title: 'Tesla model 3for rent', description: 'really cool Tesla model 3', pricePerDay: 50, mileage: 20000, year: 2019,  typeId: 5, createdAt: new Date(), updatedAt: new Date()},
-          {ownerId: 1, title: 'Civic for rent', description: 'really cool civic', pricePerDay: 50, mileage: 20000, year: 2019,  typeId: 5, createdAt: new Date(), updatedAt: new Date()},
+          {ownerId: 1, title: 'Civic for rent', description: 'really cool civic', pricePerDay: 50, mileage: 20000, year: 2019,  typeId: 6, createdAt: new Date(), updatedAt: new Date()},
 
           {ownerId: 2, title: 'Ferrari for rent', description: 'really cool ferrari', pricePerDay: 50, mileage: 20000, year: 2019,  typeId: 1, createdAt: new Date(), updatedAt: new Date()},
           {ownerId: 2, title: 'Excursion for rent', description: 'really cool excursion', pricePerDay: 50, mileage: 20000, year: 2019,  typeId: 2, createdAt: new Date(), updatedAt: new Date()},

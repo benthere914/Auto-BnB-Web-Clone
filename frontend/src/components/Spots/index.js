@@ -2,7 +2,7 @@ import { Top } from "./Top"
 import { Cards } from "./Cards";
 import { useParams } from "react-router"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, state } from "react";
+import { useEffect } from "react";
 import * as spotActions from '../../store/spot'
 
 export const Spots = () => {
@@ -16,7 +16,7 @@ export const Spots = () => {
     let length;
     let type;
     if(arr[0]){
-        length = arr.length - 1;
+        length = arr.length;
         type = arr[0][1].Type;
     }
 
