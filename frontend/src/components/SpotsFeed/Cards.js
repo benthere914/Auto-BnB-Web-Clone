@@ -1,11 +1,12 @@
 import './cards.css'
+import { useHistory } from 'react-router'
 
 export const Cards = ({data}) => {
-    console.log(data)
+    let history = useHistory();
     return (
         <div className='spots'>
             {data.map(e => (
-                <div key={e.spotId} className='spot'>
+                <div key={e[1].spotId} className='spot' onClick={() => history.push(`/spots/${e[1].spotId}`)}>
                     <img className='spotMainImg' src={e[1].mainImage.url} alt={e[1].mainImage.alt}></img>
                     <div>
                         <p>{e[1].author}</p>

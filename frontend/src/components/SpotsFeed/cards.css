@@ -5,13 +5,17 @@
 
 .spot{
     display: flex;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
 
+.spot:hover{
+    transform: scale(1.02);
 }
 
 .spotMainImg{
     width: 300px;
     height: 250px;
-    /* overflow: hidden; */
     object-fit: cover;
     margin: 0;
     border-radius: 20px;

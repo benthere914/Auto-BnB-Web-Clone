@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Spots } from './components/Spots';
+import { SpotsFeed } from './components/SpotsFeed';
 import { Route, Switch } from 'react-router-dom';
 import { useAuthModal } from './Context/AuthModals';
 import LoginFormPage from './components/SubComponents/LoginFormPage';
@@ -44,7 +44,7 @@ function App() {
                             <HomePage></HomePage>
                         </Route>
                         <Route path='/types/:typeId'>
-                            <Spots/>
+                            <SpotsFeed/>
                         </Route>
                     </Switch>
                 )}

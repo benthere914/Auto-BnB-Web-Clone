@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as spotActions from '../../store/spot'
 
-export const Spots = () => {
+export const SpotsFeed = () => {
     const dispatch = useDispatch();
     const { typeId } = useParams();
     useEffect(() => {
