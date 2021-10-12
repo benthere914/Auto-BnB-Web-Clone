@@ -23,7 +23,8 @@ const spotReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD:
             const newState = {};
-            action.payload.data.forEach(e => newState[e.id] = e);
+            let data = action.payload.data;
+            action.payload.data.forEach(e => newState[e.spotId] = e);
             return newState;
         default:
             return state;

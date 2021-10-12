@@ -24,6 +24,18 @@ module.exports = {
       description: {
         allowNull: false,
         type: Sequelize.STRING
+      }
+      ,pricePerDay: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      mileage: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      year: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       typeId: {
         type: Sequelize.INTEGER,
