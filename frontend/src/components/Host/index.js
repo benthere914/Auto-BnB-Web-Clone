@@ -10,7 +10,6 @@ export const Host = () => {
     const [pricePerDay, setPricePerDay] = useState('');
     const [type, setType] = useState(0);
     const [features, setFeatures] = useState(new Set());
-    // const [update, setUpdate] = useState(1);
 
     const carTypeClickHandler = (selection) => {
         setType(selection)
@@ -21,7 +20,6 @@ export const Host = () => {
             return
         }
         setFeatures((features) => new Set(features.add(selection)))
-        // setUpdate((count) => count + 1)
 
     }
     return (
