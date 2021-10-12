@@ -24,7 +24,8 @@ export const Spot = ({userId}) => {
     const [editReview, setEditReview] = useState('')
 
 
-    const reviewPostHandler = () => {
+    const reviewPostHandler = (e) => {
+        e.preventDefault();
         dispatch(reviewActions.addReview(+spotId, newReview, userId.id));
         setNewReview('');
     }
@@ -69,7 +70,6 @@ export const Spot = ({userId}) => {
                                     </form>
 
                                 ):<p>{e.review}</p>}
-                                {/* <p>{e.review}</p> */}
                                 {+e.author.id === +userId.id?(
                                     <>
                                     <p onClick={() => editReviewClickHandler(e)}>edit</p>
@@ -79,10 +79,10 @@ export const Spot = ({userId}) => {
                             </div>
                             ))}
                     </div>
-                    <div className='newReview'>
+                    <form className='newReview' onSubmit={(e) => reviewPostHandler(e)}>
                         <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
-                        <button onClick={() => {reviewPostHandler()}}>Submit</button>
-                    </div>
+                        <button>Submit</button>
+                    </form>
                     <div className='bookAppointment'>
 
                     </div>
