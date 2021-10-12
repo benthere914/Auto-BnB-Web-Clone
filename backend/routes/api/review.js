@@ -17,11 +17,11 @@ router.post('/', asyncHandler(async (req, res) => {
     res.json({reviews})
 }))
 
-router.delete('/:id', asyncHandler(async (req, res) => {
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     let review = await Review.findByPk(req.params.id);
     let spotId = review.dataValues.spotId;
     await review.destroy();
-    let reviews = Review.findAll({where: {spotId}});
+    let reviews = await Review.findAll({where: {spotId}});
     res.json({reviews})
 }))
 

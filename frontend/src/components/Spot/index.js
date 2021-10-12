@@ -18,7 +18,10 @@ export const Spot = ({userId}) => {
         dispatch(reviewActions.addReview(+spotId, newReview, userId.id))
     }
 
-
+    const deleteReviewHandlere = (e) => {
+        console.log(e)
+        dispatch(reviewActions.deleteReview(e.id))
+    }
 
 	return (
 		<>
@@ -38,7 +41,7 @@ export const Spot = ({userId}) => {
 				</div>
                 <div>
                     <h2>Reviews</h2>
-                {reviews?.map(e => <h3>{e.review}</h3>)}
+                {reviews?.map(e => <h3>{e.review}{e.userId === userId.id? (<span onClick={() => deleteReviewHandlere(e)}> delete</span>): null}</h3>)}
 
                     <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
                     <button onClick={() => {reviewPostHandler()}}>Submit</button>
