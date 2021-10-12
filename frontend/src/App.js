@@ -12,6 +12,7 @@ import { HomePage } from './components/Home';
 import { useNavDropDown } from './Context/navbarDropDown';
 import { useMyAccountModal } from './Context/MyAccountModal';
 import { MyAccountModal } from './components/SubComponents/MyAccountModal';
+import { Host } from './components/Host'
 
 
 function App() {
@@ -50,6 +51,9 @@ function App() {
                         </Route>
                         <Route path='/spots/:spotId'>
                             <Spot userId={userId}/>
+                        </Route>
+                        <Route path='/host'>
+                            <Host/>
                         </Route>
                     </Switch>
                 )}
