@@ -13,7 +13,12 @@ router.post('/', asyncHandler(async (req, res) => {
     console.log(req.body);
     const reviews = await Review.findAll({where: {spotId}});
     console.log(reviews)
-    reviews.map(e => e.dataValues)
+    for (let i = 0; i < reviews.length; i++){
+        reviews[i] = reviews[i].dataValues;
+        let author = await User.findByPk(reviews[i].userId);
+        author = {id: author.dataValues.id, username: author.dataValues.username, email: author.dataValues.email};
+        reviews[i].author = author;
+    }
     res.json({reviews})
 }))
 
