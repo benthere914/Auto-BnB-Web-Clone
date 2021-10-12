@@ -4,12 +4,6 @@ const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const ALTER_USER = 'session/alterUser'
 
-const alterUser = (userData, data) => {
-    return {
-        type: ALTER_USER,
-        payload: {userData, data}
-    }
-}
 
 const setUser = (user) => {
 	return {
@@ -26,7 +20,7 @@ const removeUser = () => {
 
 export const changeUsername = (user) => async (dispatch) => {
     const {id, username} = user;
-    const response = await csrfFetch(`/api/users/${id}`,
+    await csrfFetch(`/api/users/${id}`,
     {
         method: 'PUT',
         body: JSON.stringify({username})

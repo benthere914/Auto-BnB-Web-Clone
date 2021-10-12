@@ -5,7 +5,7 @@ export const Cards = ({data}) => {
     let history = useHistory();
     return (
         <div className='spots'>
-            {data.map(e => (
+            {data?.map(e => (e[1].spotId &&
                 <div key={e[1].spotId} className='spot' onClick={() => history.push(`/spots/${e[1].spotId}`)}>
                     <img className='spotMainImg' src={e[1].mainImage.url} alt={e[1].mainImage.alt}></img>
                     <div>

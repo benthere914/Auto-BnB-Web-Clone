@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SpotsFeed } from './components/SpotsFeed';
+import { Spot } from './components/Spot';
 import { Route, Switch } from 'react-router-dom';
 import { useAuthModal } from './Context/AuthModals';
 import LoginFormPage from './components/SubComponents/LoginFormPage';
@@ -30,6 +31,7 @@ function App() {
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 	}, [dispatch]);
+    const userId = useSelector(state => state.session.user);
 	return (
 		<>
             <div onClick={()=>clickHandler()}>
@@ -45,6 +47,9 @@ function App() {
                         </Route>
                         <Route path='/types/:typeId'>
                             <SpotsFeed/>
+                        </Route>
+                        <Route path='/spots/:spotId'>
+                            <Spot userId={userId}/>
                         </Route>
                     </Switch>
                 )}
