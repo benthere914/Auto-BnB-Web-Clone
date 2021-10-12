@@ -10,18 +10,18 @@ export const Host = () => {
     const [pricePerDay, setPricePerDay] = useState('');
     const [type, setType] = useState(0);
     const [features, setFeatures] = useState(new Set());
-    const [update, setUpdate] = useState(1);
+    // const [update, setUpdate] = useState(1);
 
     const carTypeClickHandler = (selection) => {
         setType(selection)
     }
     const carFeaturesClickHandler = (selection) => {
         if (features.has(selection)){
-            setFeatures((features) => {features.delete(selection); return features})
+            setFeatures((features) => new Set([...features].filter(x => x !== selection)))
             return
         }
-        setFeatures((features) => features.add(selection))
-        setUpdate((count) => count + 1)
+        setFeatures((features) => new Set(features.add(selection)))
+        // setUpdate((count) => count + 1)
 
     }
     return (
@@ -43,7 +43,6 @@ export const Host = () => {
                     <img className={type === 4? 'activeType': null} onClick={() => carTypeClickHandler(4)}></img>
                     <img className={type === 5? 'activeType': null} onClick={() => carTypeClickHandler(5)}></img>
                     <img className={type === 6? 'activeType': null} onClick={() => carTypeClickHandler(6)}></img>
-
                 </div>
 
                 <div className='carFeatures'>
