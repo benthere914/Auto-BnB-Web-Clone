@@ -13,9 +13,12 @@ import autonomousDriving from '../../images/autonomousDriving.png'
 import antiCollisionDetectionSystem from '../../images/antiCollisionDetectionSystem.png'
 import backUpCamera from '../../images/backUpCamera.png'
 import { useState } from 'react'
+import * as spotActions from '../../store/spot'
+import { useDispatch } from 'react-redux'
 
 
-export const Host = () => {
+export const Host = ({userId}) => {
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [mileage, setMilege] = useState('');
@@ -62,6 +65,8 @@ export const Host = () => {
     const formSubmitHandler = (e) => {
         e.preventDefault();
         console.log({title, description, mileage, year, pricePerDay, type, features, urls: urls.split('\n')})
+        dispatch(spotActions.addSpot({userId: userId.id, title, description, mileage, year, pricePerDay, type, features: new Array(...features), urls: urls.split('\n')}))
+
     }
     return (
         <form className='hostForm' onSubmit={(e) => formSubmitHandler(e)}>
