@@ -1,13 +1,81 @@
+
+
 .carTypes img, .carFeatures img{
-    width: 50px;
-    height: 50px;
-    border: black solid 2px;
+    width: 90px;
+    height: 90px;
+    margin: 2px;
+    background-color: blue;
+    opacity: 0.6;
 }
 
 .activeFeature{
-    background-color: red;
+    border: black solid 2px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    opacity: 1 !important;
+    /* background-color: red; */
 }
 
 .activeType{
-    background-color: red;
+    border: black solid 2px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    opacity: 1 !important;
+
+    /* background-color: red; */
+}
+
+.mainDetailsForm * label{
+    margin-right: 15px;
+}
+.hostForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleForm, .descriptionForm, .mainDetailsForm{
+    height: 30px;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.titleFormLabel, .descriptionFormLabel{
+    width: 50%;
+    height: 30px;
+
+}
+
+.mainDetailsForm{
+    display: flex;
+    justify-content: space-around;
+}
+
+.carData{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.carTypes{
+    margin-right: 10px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+.carFeatures{
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+
+    margin-left: 10px;
+
+}
+
+.formSubmit{
+    position: relative;
+    left: 430px;
+    top: 25px;
+    border: black solid 1px;
+    background-color: white;
+    padding: 15px 35px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
 }

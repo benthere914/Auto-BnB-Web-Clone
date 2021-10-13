@@ -1,4 +1,16 @@
 import './index.css'
+import leatherSeats from '../../images/leatherSeats.png'
+import wifi from '../../images/wifi.png'
+import movieScreens from '../../images/movieScreens.png'
+import cruiseControl from '../../images/cruiseControl.png'
+import parkingAssist from '../../images/parkingAssist.png'
+import _360degreeCamera from '../../images/360degreeCamera.png'
+import nightVision from '../../images/nightVision.png'
+import headsUpDisplay from '../../images/headsUpDisplay.png'
+import drowsinessDetection from '../../images/drowsinessDetection.png'
+import autonomousDriving from '../../images/autonomousDriving.png'
+import antiCollisionDetectionSystem from '../../images/antiCollisionDetectionSystem.png'
+import backUpCamera from '../../images/backUpCamera.png'
 import { useState } from 'react'
 
 
@@ -10,7 +22,29 @@ export const Host = () => {
     const [pricePerDay, setPricePerDay] = useState('');
     const [type, setType] = useState(0);
     const [features, setFeatures] = useState(new Set());
+    const featureData = [
+        {string: 'Leather Seats', url: leatherSeats},
+        {string: 'Wifi', url: wifi},
+        {string: 'Movie Screens in the Back', url: movieScreens},
+        {string: 'Adaptive Cruise Controll', url: cruiseControl},
+        {string: 'Parking Assist', url: parkingAssist},
+        {string: '360 Degree Camera', url: _360degreeCamera},
+        {string: 'Automotive Night Vision', url: nightVision},
+        {string: 'Heads Up Display', url: headsUpDisplay},
+        {string: 'Drowsiness Detection', url: drowsinessDetection},
+        {string: 'Autonomous Driving', url: autonomousDriving},
+        {string: 'Anti-Collision Warning System', url: antiCollisionDetectionSystem},
+        {string: 'Back Up Camera', url: backUpCamera},
+    ];
 
+    const types = [
+        {id: 1},
+        {id: 2},
+        {id: 3},
+        {id: 4},
+        {id: 5},
+        {id: 6}
+    ]
     const carTypeClickHandler = (selection) => {
         setType(selection)
     }
@@ -23,41 +57,48 @@ export const Host = () => {
 
     }
     return (
-        <form>
-            <input value={title} onChange={(e) => setTitle(e.target.value)}></input>
+        <form className='hostForm'>
+            <label className='titleFormLabel'>Title</label>
+            <input className='titleForm' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Title'></input>
+            <label className='descriptionFormLabel'>Description</label>
+            <input className='descriptionForm' value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Description'></input>
 
-            <input value={description} onChange={(e) => setDescription(e.target.value)}></input>
-
-            <div>
-                <input value={mileage} onChange={(e) => setMilege(e.target.value)}></input>
-                <input value={year} onChange={(e) => setYear(e.target.value)}></input>
-                <input value={pricePerDay} onChange={(e) => setPricePerDay(e.target.value)}></input>
+            <div className='mainDetailsForm'>
+                <div>
+                    <label>mileage</label>
+                    <input value={mileage} onChange={(e) => setMilege(e.target.value)} placeholder='mileage'></input>
+                </div>
+                <div>
+                    <label>Year</label>
+                    <input value={year} onChange={(e) => setYear(e.target.value)} placeholder='year'></input>
+                </div>
+                <div>
+                    <label>Price</label>
+                    <input value={pricePerDay} onChange={(e) => setPricePerDay(e.target.value)} placeholder='Price'></input>
+                </div>
             </div>
-            <div>
+            <div className='carData'>
                 <div className='carTypes'>
-                    <img className={type === 1? 'activeType': null} onClick={() => carTypeClickHandler(1)}></img>
-                    <img className={type === 2? 'activeType': null} onClick={() => carTypeClickHandler(2)}></img>
-                    <img className={type === 3? 'activeType': null} onClick={() => carTypeClickHandler(3)}></img>
-                    <img className={type === 4? 'activeType': null} onClick={() => carTypeClickHandler(4)}></img>
-                    <img className={type === 5? 'activeType': null} onClick={() => carTypeClickHandler(5)}></img>
-                    <img className={type === 6? 'activeType': null} onClick={() => carTypeClickHandler(6)}></img>
+                    {types.map(e =>
+                    <img className={type === e.id? 'activeType': null} onClick={() => carTypeClickHandler(e.id)}></img>
+                        )}
+
                 </div>
 
                 <div className='carFeatures'>
-                    <img className={features.has('Leather Seats')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Leather Seats')}></img>
-                    <img className={features.has('Wifi')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Wifi')}></img>
-                    <img className={features.has('Movie Screens in the back')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Movie Screens in the back')}></img>
-                    <img className={features.has('Adaptive Cruise Control')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Adaptive Cruise Control')}></img>
-                    <img className={features.has('360 Degree Camera')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('360 Degree Camera')}></img>
-                    <img className={features.has('Parking Assist')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Parking Assist')}></img>
-                    <img className={features.has('Automotive Night Vision')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Automotive Night Vision')}></img>
-                    <img className={features.has('Heads Up Display')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Heads Up Display')}></img>
-                    <img className={features.has('Drowsiness Detection')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Drowsiness Detection')}></img>
-                    <img className={features.has('Autonomous Driving')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Autonomous Driving')}></img>
-                    <img className={features.has('Anti-Collision Warning System')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Anti-Collision Warning System')}></img>
-                    <img className={features.has('Back Up Camera')? 'activeFeature': null} onClick={() => carFeaturesClickHandler('Back Up Camera')}></img>
+                    {featureData.map(e =>(
+                    <img
+                    key={e.string}
+                    className={features.has(e.string)? 'activeFeature': null }
+                    src={e.url}
+                    alt={e.string}
+                    onClick={() => carFeaturesClickHandler(e.string)}/>
+                    ))}
+
+
                 </div>
             </div>
+                <button className='formSubmit'>Submit</button>
         </form>
     )
 }
