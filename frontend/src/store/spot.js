@@ -48,7 +48,7 @@ export const addSpot = (payload) => async (dispatch) => {
 	const response = await csrfFetch(`/api/spots`, {'method': 'POST', 'body': JSON.stringify(payload)});
 	const data = await response.json();
 	dispatch(add_spot(data));
-	return response;
+	return data;
 };
 
 

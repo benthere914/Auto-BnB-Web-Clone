@@ -14,10 +14,13 @@ import antiCollisionDetectionSystem from '../../images/antiCollisionDetectionSys
 import backUpCamera from '../../images/backUpCamera.png'
 import { useState } from 'react'
 import * as spotActions from '../../store/spot'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
+import { useEffect } from 'react'
 
 
 export const Host = ({userId}) => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -62,12 +65,23 @@ export const Host = ({userId}) => {
         setFeatures((features) => new Set(features.add(selection)))
 
     }
+    let state = useSelector(state => state.spot);
     const formSubmitHandler = (e) => {
         e.preventDefault();
         console.log({title, description, mileage, year, pricePerDay, type, features, urls: urls.split('\n')})
-        dispatch(spotActions.addSpot({userId: userId.id, title, description, mileage, year, pricePerDay, type, features: new Array(...features), urls: urls.split('\n')}))
-
+        let payload = {userId: userId.id, title, description, mileage, year, pricePerDay, type, features: new Array(...features), urls: urls.split('\n')}
+        dispatch(spotActions.addSpot(payload))
     }
+
+    useEffect(() => {
+        console.log(state);
+        if (state.errors){
+
+        }
+        if (state.message){
+            history.push(`/spots/${state.spotId}`)
+        }
+    }, [state])
     return (
         <form className='hostForm' onSubmit={(e) => formSubmitHandler(e)}>
             <label className='titleFormLabel'>Title</label>
