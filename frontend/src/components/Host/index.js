@@ -37,6 +37,7 @@ export const Host = ({userId}) => {
     const [priceError, setPriceError] = useState('');
     const [typeError, setTypeError] = useState('');
     const [urlsError, setUrlsError] = useState('');
+    const [featuresError, setFeaturesError] = useState('');
 
     const featureData = [
         {string: 'Leather Seats', url: leatherSeats},
@@ -91,6 +92,7 @@ export const Host = ({userId}) => {
             setTypeError(state.errors.type);
             setUrlsError(state.errors.urls);
             setPriceError(state.errors.price);
+            setFeaturesError(state.errors.features)
         }
         if (!state.errors){
             setTitleError('');
@@ -100,6 +102,7 @@ export const Host = ({userId}) => {
             setTypeError('');
             setUrlsError('');
             setPriceError('');
+            setFeaturesError('');
         }
         if (state.message){
             history.push(`/spots/${state.spotId}`)
@@ -157,7 +160,7 @@ export const Host = ({userId}) => {
                     </div>
                 </div>
                 <div>
-                    <h2>Choose the features of your car</h2>
+                    <h2>{`${featuresError? featuresError: ''}`}</h2>
                     <div className='carFeatures'>
                         {featureData.map(e =>(
                             <p

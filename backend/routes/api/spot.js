@@ -53,6 +53,7 @@ router.post('/', asyncHandler(async (req, res) => {
     if (Number.isNaN(year) || year < 1850 || year > 2022){errors['year'] = ('Year must be a valid year')}
     if (Number.isNaN(pricePerDay) || pricePerDay < 0 || !(pricePerDay)){errors['price'] = ('Price must be a valid price')}
     if (Number.isNaN(type) || type === 0 || type < 0 || type > 6){errors['type'] = ('Type must be a valid type')}
+    if (features.length < 3){errors['features'] = ('Must Contain at least 3 features')}
     let filteredUrls = urls.filter((e) =>  (e !== '' && e.startsWith('http')));
     if (!filteredUrls.length){errors['urls'] = ('Image urls must be valid')}
     if (Object.entries(errors).length){console.log(errors);return res.json({'errors' : errors})}
