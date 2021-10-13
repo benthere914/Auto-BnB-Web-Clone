@@ -1,5 +1,6 @@
 export const Price = ({data}) => {
     const {pricePerDay, setPriceError, setPricePerDay, priceError} = data;
+    if (priceError){setPricePerDay('')}
     return (
         <div>
             <label>Price</label>

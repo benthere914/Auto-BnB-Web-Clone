@@ -2,6 +2,7 @@
 
 export const Year = ({data}) => {
     const {year, setYear, yearError, setYearError} = data;
+    if (yearError){setYear('')}
     return (
         <div>
             <label>Year</label>

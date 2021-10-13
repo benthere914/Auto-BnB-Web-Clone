@@ -2,6 +2,7 @@
 
 export const Title = ({data}) => {
     const {title,titleError, setTitle, setTitleError} = data;
+    if (titleError){setTitle('')}
     return (
         <>
         <label className='titleFormLabel'>Title</label>
