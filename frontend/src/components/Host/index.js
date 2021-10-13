@@ -22,6 +22,7 @@ import { useEffect } from 'react'
 export const Host = ({userId}) => {
     const history = useHistory();
     const dispatch = useDispatch();
+    const [errors, setErrors] = useState({})
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [mileage, setMilege] = useState('');
@@ -29,6 +30,14 @@ export const Host = ({userId}) => {
     const [pricePerDay, setPricePerDay] = useState('');
     const [type, setType] = useState(0);
     const [features, setFeatures] = useState(new Set());
+    const [titleError, setTitleError] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
+    const [mileageError, setMileageError] = useState('');
+    const [yearError, setYearError] = useState('');
+    const [priceError, setPriceError] = useState('');
+    const [typeError, setTypeError] = useState('');
+    const [urlsError, setUrlsError] = useState('');
+
     const featureData = [
         {string: 'Leather Seats', url: leatherSeats},
         {string: 'Wifi', url: wifi},
@@ -70,13 +79,27 @@ export const Host = ({userId}) => {
         e.preventDefault();
         console.log({title, description, mileage, year, pricePerDay, type, features, urls: urls.split('\n')})
         let payload = {userId: userId.id, title, description, mileage, year, pricePerDay, type, features: new Array(...features), urls: urls.split('\n')}
-        dispatch(spotActions.addSpot(payload))
+        dispatch(spotActions.addSpot(payload));
     }
 
     useEffect(() => {
-        console.log(state);
         if (state.errors){
-
+            setTitleError(state.errors.title);
+            setDescriptionError(state.errors.description);
+            setMileageError(state.errors.mileage);
+            setYearError(state.errors.year);
+            setTypeError(state.errors.type);
+            setUrlsError(state.errors.urls);
+            setPriceError(state.errors.price);
+        }
+        if (!state.errors){
+            setTitleError('');
+            setDescriptionError('');
+            setMileageError('');
+            setYearError('');
+            setTypeError('');
+            setUrlsError('');
+            setPriceError('');
         }
         if (state.message){
             history.push(`/spots/${state.spotId}`)
@@ -85,43 +108,68 @@ export const Host = ({userId}) => {
     return (
         <form className='hostForm' onSubmit={(e) => formSubmitHandler(e)}>
             <label className='titleFormLabel'>Title</label>
-            <input className='titleForm' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Title'></input>
+            <input
+            style={titleError?{backgroundColor: 'pink'}: {backgroundColor: 'white'}}
+            className='titleForm'
+            value={title}
+            onChange={(e) => {setTitle(e.target.value); setTitleError('')}}
+            placeholder={titleError?titleError: 'Title'}></input>
             <label className='descriptionFormLabel'>Description</label>
-            <input className='descriptionForm' value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Description'></input>
+            <input
+            style={descriptionError?{backgroundColor: 'pink'}: {backgroundColor: 'white'}}
+            className='descriptionForm'
+            value={description}
+            onChange={(e) => {setDescription(e.target.value); setDescriptionError('')}}
+            placeholder={descriptionError?descriptionError:'Description'}></input>
 
             <div className='mainDetailsForm'>
                 <div>
                     <label>mileage</label>
-                    <input value={mileage} onChange={(e) => setMilege(e.target.value)} placeholder='mileage'></input>
+                    <input
+                    style={mileageError?{backgroundColor: 'pink'}: {backgroundColor: 'white'}}
+                    value={mileage}
+                    onChange={(e) => {setMilege(e.target.value);setMileageError('') }} placeholder={mileageError?mileageError: 'Miles'}></input>
                 </div>
                 <div>
                     <label>Year</label>
-                    <input value={year} onChange={(e) => setYear(e.target.value)} placeholder='year'></input>
+                    <input
+                    style={yearError?{backgroundColor: 'pink'}: {backgroundColor: 'white'}}
+                    value={year}
+                    onChange={(e) => {setYear(e.target.value); setYearError('')}} placeholder={yearError?yearError: 'Years'}></input>
                 </div>
                 <div>
                     <label>Price</label>
-                    <input value={pricePerDay} onChange={(e) => setPricePerDay(e.target.value)} placeholder='Price'></input>
+                    <input
+                    style={priceError?{backgroundColor: 'pink'}: {backgroundColor: 'white'}}
+                    value={year}
+                    value={pricePerDay}
+                    onChange={(e) => {setPricePerDay(e.target.value); setPriceError('')}}
+                    placeholder={priceError?priceError: 'price'}></input>
                 </div>
             </div>
             <div className='carData'>
-                <div className='carTypes'>
-                    {types.map(e =>
-                    <p key={e.id} className={type === e.id? 'activeType': null} onClick={() => carTypeClickHandler(e.id)}>{e.string}</p>
+                <div>
+                    <h2 style={typeError?{backgroundColor: 'pink', width: '270px'}: {backgroundColor: 'white'}}>{typeError?typeError:'Pick a Car type'}</h2>
+                    <div className='carTypes'>
+                        {types.map(e =>
+                        <p key={e.id} className={type === e.id? 'activeType': null} onClick={() => {carTypeClickHandler(e.id); setTypeError('')}}>{e.string}</p>
                         )}
-
+                    </div>
                 </div>
-
-                <div className='carFeatures'>
-                    {featureData.map(e =>(
-                    <p
-                    key={e.string}
-                    className={features.has(e.string)? 'activeFeature': null }
-                    onClick={() => carFeaturesClickHandler(e.string)}>{e.string}</p>
-                    ))}
+                <div>
+                    <h2>Choose the features of your car</h2>
+                    <div className='carFeatures'>
+                        {featureData.map(e =>(
+                            <p
+                            key={e.string}
+                            className={features.has(e.string)? 'activeFeature': null }
+                            onClick={() => carFeaturesClickHandler(e.string)}>{e.string}</p>
+                            ))}
+                    </div>
                 </div>
             </div>
                         <div className='mainImagesDiv'>
-                            <Images urls={urls} setUrls={setUrls}/>
+                            <Images urls={urls} setUrls={setUrls} urlsError={urlsError} setUrlsError={setUrlsError}/>
                         </div>
                 <button className='formSubmit'>Submit</button>
         </form>
