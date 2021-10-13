@@ -1,5 +1,6 @@
 export const Description = ({data}) => {
     const {descriptionError, description, setDescription, setDescriptionError} = data;
+    if (descriptionError){setDescription('')}
     return (
         <>
             <label className='descriptionFormLabel'>Description</label>

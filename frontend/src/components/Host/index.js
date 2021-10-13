@@ -20,7 +20,7 @@ export const Host = ({userId}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [mileage, setMilege] = useState('');
+    const [mileage, setMileage] = useState('');
     const [year, setYear] = useState('');
     const [pricePerDay, setPricePerDay] = useState('');
     const [type, setType] = useState(0);
@@ -87,7 +87,7 @@ export const Host = ({userId}) => {
             setTypeError(state.errors.type);
             setUrlsError(state.errors.urls);
             setPriceError(state.errors.price);
-            setFeaturesError(state.errors.features)
+            setFeaturesError(state.errors.features);
         }
         if (!state.errors){
             setTitleError('');
@@ -108,7 +108,7 @@ export const Host = ({userId}) => {
             <Title data={{title, titleError, setTitle, setTitleError}}/>
             <Description data={{description, descriptionError, setDescription, setDescriptionError}}/>
             <div className='mainDetailsForm'>
-                <Mileage data={{mileage, mileageError, setMilege, setMileageError}}/>
+                <Mileage data={{mileage, mileageError, setMileage, setMileageError}}/>
                 <Year data={{year, yearError, setYearError, setYear}}/>
                 <Price data={{pricePerDay, setPricePerDay, priceError, setPriceError}}/>
 
