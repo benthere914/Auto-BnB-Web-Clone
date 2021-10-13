@@ -31,11 +31,6 @@ export const Urls = ({data}) => {
         <input value={input5} onChange={(e) => setInput5(e.target.value)}></input>
         <input value={input6} onChange={(e) => setInput6(e.target.value)}></input>
         <input value={input7} onChange={(e) => setInput7(e.target.value)}></input>
-
-
-
-
-        {/* <textarea rows={15} cols={100} value={urls} onChange={(e) => setUrls(e.target.value)}></textarea> */}
         </div>
     )
 }
