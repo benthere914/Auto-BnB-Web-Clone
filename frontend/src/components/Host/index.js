@@ -8,6 +8,7 @@ import { Mileage } from './Mileage'
 import { Year } from './Year'
 import { Types } from './Types'
 import { Features } from './Features'
+import { PictureModal } from './PictureModal'
 import { useState } from 'react'
 import * as spotActions from '../../store/spot'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,6 +33,7 @@ export const Host = ({userId}) => {
     const [priceError, setPriceError] = useState('');
     const [typeError, setTypeError] = useState('');
     const [urlsError, setUrlsError] = useState('');
+    const [pictureModal, setPictureModal] = useState(false);
     const [featuresError, setFeaturesError] = useState('');
 
     const featureData = [
@@ -103,8 +105,21 @@ export const Host = ({userId}) => {
             history.push(`/spots/${state.spotId}`)
         }
     }, [state])
+    const closeModalHandler = () => {
+        if (pictureModal){
+            setPictureModal(false);
+        }
+    }
+
+    const openPictureModalHandler = () => {
+        if (!pictureModal && urls.length){
+            setPictureModal(true)
+        }
+    }
     return (
-        <form className='hostForm' onSubmit={(e) => formSubmitHandler(e)}>
+        <>
+        {pictureModal?<PictureModal data={{urls}}/>:null}
+        <form className='hostForm' onSubmit={(e) => formSubmitHandler(e)} onClick={() => {closeModalHandler()}}>
             <Title data={{title, titleError, setTitle, setTitleError}}/>
             <Description data={{description, descriptionError, setDescription, setDescriptionError}}/>
             <div className='mainDetailsForm'>
@@ -119,9 +134,10 @@ export const Host = ({userId}) => {
             </div>
                         <div className='mainImagesDiv'>
                             <Urls data={{urls, setUrls, urlsError}}/>
-                            <Images data={{urls}}/>
+                            <Images data={{urls, setPictureModal, openPictureModalHandler}}/>
                         </div>
                 <button className='formSubmit'>Submit</button>
         </form>
+        </>
     )
 }

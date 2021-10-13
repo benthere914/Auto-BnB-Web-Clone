@@ -1,17 +1,20 @@
 import uuid from 'react-uuid';
+import { useState } from 'react';
 export const Images = ({data}) => {
-    const {urls} = data
+    const {urls, setPictureModal, openPictureModalHandler} = data
+    const [display, setDisplay] = useState('')
     return (
         <div className='imagesDiv'>
-        {urls.split('\n').map((e) => (
+        {!!urls.length && urls.split(',').map((e) => (
                  <img
+                 onClick={() => {openPictureModalHandler()}}
                  key={uuid()}
                  className='images'
                  src={e}
-                 onError={
-                     (e) => {
-                         e.target.src='https://t3.ftcdn.net/jpg/03/35/13/14/360_F_335131435_DrHIQjlOKlu3GCXtpFkIG1v0cGgM9vJC.jpg';
-                         }}></img>))}
+                //  onLoad={() => setDisplay('visible')}
+                //  onError={(e) => {setDisplay('none')}}
+                //  style={{display: display}}
+                ></img>))}
 
         </div>
     )
