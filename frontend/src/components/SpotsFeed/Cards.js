@@ -22,7 +22,6 @@ export const Cards = ({data}) => {
                 </div>
             ))}
 
-            {data.map((e) => console.log(e[1].author))}
 
         </div>
     )

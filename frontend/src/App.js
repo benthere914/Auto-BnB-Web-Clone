@@ -53,7 +53,7 @@ function App() {
                             <Spot userId={userId}/>
                         </Route>
                         <Route path='/host'>
-                            <Host/>
+                            <Host userId={userId}/>
                         </Route>
                     </Switch>
                 )}
