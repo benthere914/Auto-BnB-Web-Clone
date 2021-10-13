@@ -130,3 +130,37 @@
     height: 50px;
     margin: 5px;
 }
+
+
+.pictureModal{
+    position: fixed;
+    width: 800px;
+    height: 500px;
+    background-color: lightblue;
+    z-index: 2;
+    left: 500px;
+    top: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arrow{
+    transform: scale(5);
+    cursor: pointer;
+}
+
+.left{
+    position: relative;
+    left: 50px;
+}
+.right{
+    position: relative;
+    right: 50px;
+}
+
+.scrollImage{
+    width: 500px;
+    height: 500px;
+}
