@@ -1,4 +1,5 @@
 import './index.css'
+import { Images } from './images'
 import leatherSeats from '../../images/leatherSeats.png'
 import wifi from '../../images/wifi.png'
 import movieScreens from '../../images/movieScreens.png'
@@ -45,6 +46,8 @@ export const Host = () => {
         {id: 5},
         {id: 6}
     ]
+    const [urls, setUrls] = useState('')
+
     const carTypeClickHandler = (selection) => {
         setType(selection)
     }
@@ -56,8 +59,12 @@ export const Host = () => {
         setFeatures((features) => new Set(features.add(selection)))
 
     }
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
+        console.log({title, description, mileage, year, pricePerDay, type, features, urls: urls.split('\n')})
+    }
     return (
-        <form className='hostForm'>
+        <form className='hostForm' onSubmit={(e) => formSubmitHandler(e)}>
             <label className='titleFormLabel'>Title</label>
             <input className='titleForm' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Title'></input>
             <label className='descriptionFormLabel'>Description</label>
@@ -80,7 +87,7 @@ export const Host = () => {
             <div className='carData'>
                 <div className='carTypes'>
                     {types.map(e =>
-                    <img className={type === e.id? 'activeType': null} onClick={() => carTypeClickHandler(e.id)}></img>
+                    <img key={e.id} className={type === e.id? 'activeType': null} onClick={() => carTypeClickHandler(e.id)}></img>
                         )}
 
                 </div>
@@ -98,6 +105,9 @@ export const Host = () => {
 
                 </div>
             </div>
+                        <div className='mainImagesDiv'>
+                            <Images urls={urls} setUrls={setUrls}/>
+                        </div>
                 <button className='formSubmit'>Submit</button>
         </form>
     )
