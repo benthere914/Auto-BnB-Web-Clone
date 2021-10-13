@@ -45,12 +45,12 @@ export const Host = ({userId}) => {
     ];
 
     const types = [
-        {id: 1},
-        {id: 2},
-        {id: 3},
-        {id: 4},
-        {id: 5},
-        {id: 6}
+        {id: 1, string: 'Sports Cars'},
+        {id: 2, string: 'Family Cars'},
+        {id: 3, string: 'Trucks'},
+        {id: 4, string: 'Off Roading Vehicles'},
+        {id: 5, string: 'Electric Cars'},
+        {id: 6, string: 'Sedans'}
     ]
     const [urls, setUrls] = useState('')
 
@@ -106,22 +106,18 @@ export const Host = ({userId}) => {
             <div className='carData'>
                 <div className='carTypes'>
                     {types.map(e =>
-                    <img key={e.id} className={type === e.id? 'activeType': null} onClick={() => carTypeClickHandler(e.id)}></img>
+                    <p key={e.id} className={type === e.id? 'activeType': null} onClick={() => carTypeClickHandler(e.id)}>{e.string}</p>
                         )}
 
                 </div>
 
                 <div className='carFeatures'>
                     {featureData.map(e =>(
-                    <img
+                    <p
                     key={e.string}
                     className={features.has(e.string)? 'activeFeature': null }
-                    src={e.url}
-                    alt={e.string}
-                    onClick={() => carFeaturesClickHandler(e.string)}/>
+                    onClick={() => carFeaturesClickHandler(e.string)}>{e.string}</p>
                     ))}
-
-
                 </div>
             </div>
                         <div className='mainImagesDiv'>
