@@ -1,6 +1,6 @@
 
 
-export const LeftSidePost = ({allData}) =>{
+export const PrimaryData = ({allData}) =>{
     const {data, imgIndex, setImgIndex} = allData;
 
     console.log(imgIndex, data)

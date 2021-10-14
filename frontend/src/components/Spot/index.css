@@ -1,18 +1,13 @@
 .mainSpotPage{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
 
 
 
-.leftSide{
-    position: relative;
-    left: 50px;
-    width: 1200px;
-    height: 700px;
-}
+
 
 .spotImage{
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
@@ -22,33 +17,15 @@
 
 }
 
-.rightSide{
-    display: flex;
-    flex-direction: column;
+
+
+.arrow.left{
     position: relative;
-    left: 100px;
-    top: 40px;
+    padding: 0px 50px 0px 35px;
 }
 
-.reviews{
-    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
-    height: 300px;
-    width: 500px;
-    overflow-y: scroll;
-    margin-bottom: 20px;
-}
-
-.newReview{
-    display: flex;
-    flex-direction: column;
-}
-
-.bookAppointment{
-    height: 300px;
-    width: 500px;
-    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-
+.arrow.right{
+    padding: 0px 35px 0px 50px;
 }
 
 .scrollImages{
@@ -59,7 +36,139 @@
     align-items: center;
 }
 
-.left{
+.bottomSide{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
     position: relative;
-    /* margin: 50px; */
+    left: 380px;
+}
+
+.spotFeatures{
+    display: flex;
+    flex-direction: column;
+}
+
+.feature{
+    width: 500px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 25px;
+    margin-top: 25px;
+}
+.feature i{
+    height: min-content;
+    margin-left: 25px;
+    transform: scale(2);
+}
+
+.featureText{
+    padding-left: 50px;
+}
+
+.reviewDiv{
+    margin-left: 25px;
+    width: 500px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 25px;
+    margin-top: 25px;
+    height: 84px;
+    position: relative;
+    top: 25px;
+}
+
+.authorPhoto{
+    border-radius: 50%;
+    transform: scale(1);
+    width: 32px;
+    height: 32px;
+    margin-left: 15px;
+}
+
+.username{
+    position: relative;
+    left: 40px;
+    top: 15px;
+}
+
+.date{
+    position: relative;
+    left: 250px;
+    bottom: 20px;
+}
+
+.review{
+    position: relative;
+    left: 40px;
+    bottom: 20px;
+}
+
+
+
+
+.editReviewLinks{
+    display: flex;
+    height: min-content;
+    padding: 0;
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    left: 300px;
+    bottom: 30px;
+
+}
+
+.editReviewLink{
+    width: min-content;
+    margin: 0;
+    cursor: pointer;
+
+
+}
+
+.editReview{
+    position: relative;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+
+}
+
+.editReview *{
+    padding: 4px;
+    margin: 10px;
+}
+
+.editReview button{
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.newReview{
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    top: 25px;
+    padding-bottom: 25px;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    width: 500px;
+}
+
+.newReview * {
+    padding: 5px;
+    margin: 5px;
+}
+
+.newReview button{
+    border-radius: 25px;
+    cursor: pointer;
 }
