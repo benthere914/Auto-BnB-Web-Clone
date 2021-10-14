@@ -61,14 +61,16 @@ return (
         <div>
             {reviews?.map((e)=>(
                 <div className='reviewDiv'>
-                    <img className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>
+                    {!editing || editing && e.id !== idInQuestion?<img className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
+
                     <div className='reviewText'>
-                        <div className='topOfReview'>
+                        {!editing || editing && e.id !== idInQuestion?<div className='topOfReview'>
                             <p className='username'>{e.author.username}</p>
                             <p className='date'>{convert(e.updatedAt)}</p>
                         </div>
+                            :null}
                         {editing && e.id === idInQuestion?(<EditReview data={{editReviewSubmitHandler, setEditReview, e, editReview}}/>):<p className='review' >{e.review}</p>}
-                        {+e.author.id === +userId.id?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
+                        {!editing || e.id !== idInQuestion && +e.author.id === +userId.id?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
                     </div>
                 </div>
             ))}
