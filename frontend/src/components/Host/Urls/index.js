@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { useSelector } from "react-redux";
+
 
 export const Urls = ({allData}) => {
     const {
@@ -10,20 +9,18 @@ export const Urls = ({allData}) => {
             input5, setInput5,
             input6, setInput6,
             input7, setInput7,
-            urls, setUrls,
             urlsError
         } = allData
 
-        let tempArr = [];
-        if (input1){tempArr.push(input1)}
-        if (input2){tempArr.push(input2)}
-        if (input3){tempArr.push(input3)}
-        if (input4){tempArr.push(input4)}
-        if (input5){tempArr.push(input5)}
-        if (input6){tempArr.push(input6)}
-        if (input7){tempArr.push(input7)}
-        setUrls(tempArr.join(','))
-        console.log(urls)
+        // let tempArr = [];
+        // if (input1){tempArr.push(input1)}
+        // if (input2){tempArr.push(input2)}
+        // if (input3){tempArr.push(input3)}
+        // if (input4){tempArr.push(input4)}
+        // if (input5){tempArr.push(input5)}
+        // if (input6){tempArr.push(input6)}
+        // if (input7){tempArr.push(input7)}
+        // setUrls(tempArr.join(','))
 
     return (
         <div className='addImageDiv'>

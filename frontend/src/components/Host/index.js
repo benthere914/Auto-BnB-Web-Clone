@@ -69,7 +69,18 @@ export const Host = ({userId, getExtraData}) => {
         {id: 5, string: 'Electric Cars'},
         {id: 6, string: 'Sedans'}
     ]
-    const [urls, setUrls] = useState('')
+    const [urls, setUrls] = useState('');
+    useEffect(() => {
+        let tempArr = [];
+        if (input1){tempArr.push(input1)}
+        if (input2){tempArr.push(input2)}
+        if (input3){tempArr.push(input3)}
+        if (input4){tempArr.push(input4)}
+        if (input5){tempArr.push(input5)}
+        if (input6){tempArr.push(input6)}
+        if (input7){tempArr.push(input7)}
+        setUrls(tempArr.join(','))
+    }, [input1, input2, input3, input4, input5, input6, input7])
 
     const carTypeClickHandler = (selection) => {
         setType(selection)
@@ -114,7 +125,7 @@ export const Host = ({userId, getExtraData}) => {
         if (state.message){
             history.push(`/spots/${state.spotId}`)
         }
-    }, [state])
+    }, [state, history])
     const closeModalHandler = () => {
         if (pictureModal){
             setPictureModal(false);
@@ -133,11 +144,10 @@ export const Host = ({userId, getExtraData}) => {
             setGetData(true);
             })
         }
-    }, [])
+    }, [dispatch, getExtraData, params.spotId, ])
 
     useEffect(() => {
         if (getData && getExtraData){
-            console.log(spot)
             setTitle(spot.data.title);
             setDescription(spot.data.description);
             setMileage(spot.data.mileage);
@@ -151,10 +161,11 @@ export const Host = ({userId, getExtraData}) => {
             }
         }
 
-    }, [getData])
+    }, [getData, getExtraData])
+
     return (
         <>
-        {pictureModal?<PictureModal data={{urls}}/>:null}
+        {pictureModal?<PictureModal data={{urls, title}}/>:null}
         <form className='hostForm' onSubmit={(e) => formSubmitHandler(e)} onClick={() => {closeModalHandler()}}>
             <Title data={{title, titleError, setTitle, setTitleError}}/>
             <Description data={{description, descriptionError, setDescription, setDescriptionError}}/>
@@ -177,10 +188,9 @@ export const Host = ({userId, getExtraData}) => {
             input5, setInput5,
             input6, setInput6,
             input7, setInput7,
-            urls, setUrls,
             urlsError
         }}/>
-                            <Images data={{urls, setPictureModal, openPictureModalHandler}}/>
+                            <Images data={{urls, setPictureModal, openPictureModalHandler, title}}/>
                         </div>
                 <button className='formSubmit'>Submit</button>
         </form>

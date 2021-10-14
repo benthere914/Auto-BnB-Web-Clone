@@ -4,13 +4,15 @@ import { TopButton } from './TopButton';
 import { DropDownMenu } from './DropDownMenu';
 import './Navigation.css';
 import { useNavDropDown } from '../../../Context/navbarDropDown';
+import * as spotActions from '../../../store/spot'
+import { useDispatch } from 'react-redux';
 function Navigation() {
-    const {NavDropDown, setNavDropDown} = useNavDropDown()
-	// const [dropDown, setDropDown] = useState(false);
+    const dispatch = useDispatch();
+    const {NavDropDown, setNavDropDown} = useNavDropDown();
 	return (
 			<ul className="navbar">
 				<li>
-					<NavLink className="home" exact to="/">
+					<NavLink className="home" exact to="/" onClick={() => {dispatch(spotActions.resetSpot())}}>
 						CarBnB
 					</NavLink>
 				</li>

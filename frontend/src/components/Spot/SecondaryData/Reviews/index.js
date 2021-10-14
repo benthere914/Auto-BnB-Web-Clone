@@ -1,7 +1,8 @@
 import { convert } from '../../../../utils/date';
+import uuid from 'react-uuid'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {  useState, useRef } from 'react';
+import {  useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as reviewActions from '../../../../store/review';
 import md5 from 'md5';
@@ -11,8 +12,7 @@ import { EditLinks } from './EditLinks';
 export const Reviews = ({userId}) => {
     let dispatch = useDispatch();
     const { spotId } = useParams();
-    const [secLoad, setSecLoad] = useState(false);
-    useEffect(() => {dispatch(reviewActions.loadReviews(+spotId)).then(() => setSecLoad(true))}, [dispatch, spotId]);
+    useEffect(() => {dispatch(reviewActions.loadReviews(+spotId))}, [dispatch, spotId]);
     if (!userId){
         userId = {id: 0, username: 'anonymous'}
     }
@@ -21,8 +21,6 @@ export const Reviews = ({userId}) => {
     const [editing, setEditing] = useState(false);
     const [idInQuestion, setIdInQuestion] = useState(0);
     const [editReview, setEditReview] = useState('');
-    const [error, setError] = useState('')
-    console.log(reviews)
     const reviewPostHandler = (e) => {
         e.preventDefault();
         dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then((e) =>
@@ -60,17 +58,17 @@ return (
         </form>
         <div>
             {reviews?.map((e)=>(
-                <div className='reviewDiv'>
-                    {!editing || editing && e.id !== idInQuestion?<img className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
+                <div className='reviewDiv' key={uuid()}>
+                    {(!editing) || (editing && e.id !== idInQuestion)?<img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
 
                     <div className='reviewText'>
-                        {!editing || editing && e.id !== idInQuestion?<div className='topOfReview'>
+                        {(!editing) || (editing && e.id !== idInQuestion)?<div className='topOfReview'>
                             <p className='username'>{e.author.username}</p>
                             <p className='date'>{convert(e.updatedAt)}</p>
                         </div>
                             :null}
-                        {editing && e.id === idInQuestion?(<EditReview data={{editReviewSubmitHandler, setEditReview, e, editReview}}/>):<p className='review' >{e.review}</p>}
-                        {!editing && +e.author.id === +userId.id || e.id !== idInQuestion && +e.author.id === +userId.id?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
+                        {(editing && e.id === idInQuestion)?(<EditReview data={{editReviewSubmitHandler, setEditReview, e, editReview}}/>):<p className='review' >{e.review}</p>}
+                        {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
                     </div>
                 </div>
             ))}

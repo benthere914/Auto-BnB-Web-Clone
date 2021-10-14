@@ -1,11 +1,7 @@
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import * as spotActions from '../../../store/spot'
 
 export const PrimaryData = ({allData}) =>{
-    const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
     const {userId, data, imgIndex, setImgIndex, openDeleteModalHandler} = allData;
@@ -27,7 +23,7 @@ export const PrimaryData = ({allData}) =>{
     const editPostClickHandler = () => {
         history.push(`/spots/${params.spotId}/edit`)
     }
-   
+
     return (
         <>
         <div className='leftSide'>

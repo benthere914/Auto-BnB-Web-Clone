@@ -8,10 +8,10 @@ import * as spotActions from '../../store/spot'
 export const SpotsFeed = () => {
     const dispatch = useDispatch();
     const { typeId } = useParams();
+    let spots = useSelector(state => state.spot);
     useEffect(() => {
         dispatch(spotActions.loadSpots(typeId))
     }, [dispatch, typeId]);
-    let spots = useSelector(state => state.spot);
     let arr = Object.entries(spots);
     let length;
     let type;

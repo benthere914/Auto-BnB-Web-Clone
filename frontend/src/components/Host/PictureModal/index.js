@@ -1,6 +1,6 @@
 import { useState } from "react";
 export const PictureModal = ({data}) => {
-    const {urls} = data;
+    const {urls, title} = data;
     let arr = urls.split(',');
     const [index, setIndex] = useState(0);
     const leftArrowHandler = () => {
@@ -19,9 +19,9 @@ export const PictureModal = ({data}) => {
     };
     return (
         <div className='pictureModal'>
-            <i className='fas fa-arrow-alt-circle-left arrow left' onClick={() => {leftArrowHandler(); console.log(arr)}}/>
-            <img className='scrollImage' src={arr[index]}></img>
-            <i className='fas fa-arrow-alt-circle-right arrow right' onClick={() => {rightArrowHandler(); console.log(arr[index])}}/>
+            <i className='fas fa-arrow-alt-circle-left arrow left' onClick={() => {leftArrowHandler()}}/>
+            <img  alt={title} className='scrollImage' src={arr[index]}></img>
+            <i className='fas fa-arrow-alt-circle-right arrow right' onClick={() => {rightArrowHandler()}}/>
         </div>
     )
 }

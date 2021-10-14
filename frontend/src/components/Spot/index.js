@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as spotActions from '../../store/spot';
-import * as reviewActions from '../../store/review';
 import { DeleteModal } from './DeleteModal';
 import { useHistory } from 'react-router-dom';
 
