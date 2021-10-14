@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Spot, Image, Feature, Review, Type } = require('../../db/models');
+const { User, Spot, Image, Feature, Review, Type, Booking } = require('../../db/models');
 const router = express.Router();
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
@@ -68,7 +68,7 @@ router.post('/', asyncHandler(async (req, res) => {
     res.json({'message': 'passed', spotId});
 }))
 
-router.put('/:id', asyncHandler(async (req, res) => {
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
     let {userId, title, description, mileage, year, pricePerDay, type, features, urls} = req.body;
     const errors = {};
     mileage = +mileage;
@@ -118,4 +118,27 @@ router.put('/:id', asyncHandler(async (req, res) => {
     res.json({'message': 'success', spotId: req.params.id})
 }))
 
+
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
+    let spotId = req.params.id;
+    const features = await Feature.findAll({where: {spotId}});
+    const images = await Image.findAll({where: {spotId}});
+    const reviews = await Review.findAll({where: {spotId}});
+    const bookings = await Booking.findAll({where: {spotId}});
+    for (let i = 0; i < features.length; i++){
+        await features[i].destroy();
+    }
+    for (let j = 0; j < images.length; j++){
+        await images[j].destroy();
+    }
+    for (let k = 0; k < reviews.length; k++){
+        await reviews[k].destroy();
+    }
+    for (let l = 0; l < bookings.length; l++){
+        await bookings[l].destroy();
+    }
+    const spot = await Spot.findByPk(spotId);
+    await spot.destroy();
+    res.json({'message': 'success'})
+}))
 module.exports = router;

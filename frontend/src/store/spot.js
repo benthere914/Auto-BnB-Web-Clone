@@ -5,6 +5,15 @@ const LOADONE = 'spot/load/one';
 const ADDONE = 'spot/add/one';
 const RESET = 'spot/reset';
 const EDITONE = 'spot/reset/one';
+const DELETEONE = 'spot/delete/one';
+
+const delete_one_spot = (payload) => {
+    return {
+        type: DELETEONE,
+        payload
+    }
+}
+
 
 const loadAllSpots = (payload) => {
     return {
@@ -20,7 +29,7 @@ const edit_one_spot = (payload) => {
     }
 }
 
-const loadOneSpot = (payload) => {
+const load_one_spot = (payload) => {
     return {
         type: LOADONE,
         payload
@@ -40,6 +49,12 @@ const reset_spot = () => {
     }
 }
 
+export const deleteOneSpot = (id) => async (dispatch) => {
+	const response = await csrfFetch(`/api/spots/${id}`, {'method': 'DELETE'});
+	const data = await response.json();
+	dispatch(delete_one_spot(data));
+	return response;
+};
 
 
 export const loadSpots = (id) => async (dispatch) => {
@@ -59,7 +74,7 @@ export const editSpot = (id, payload) => async (dispatch) => {
 export const loadSpot = (id) => async (dispatch) => {
 	const response = await csrfFetch(`/api/spots/${+id}`);
 	const data = await response.json();
-	dispatch(loadOneSpot(data));
+	dispatch(load_one_spot(data));
 	return response;
 };
 
@@ -83,11 +98,13 @@ const spotReducer = (state = {}, action) => {
             action.payload.data.forEach(e => newState[e.spotId] = e);
             return newState;
         case LOADONE:
-            return action.payload
+            return action.payload;
         case ADDONE:
-            return action.payload
+            return action.payload;
         case EDITONE:
-            return action.payload
+            return action.payload;
+        case DELETEONE:
+            return action.payload;
         case RESET:
             return {};
         default:
