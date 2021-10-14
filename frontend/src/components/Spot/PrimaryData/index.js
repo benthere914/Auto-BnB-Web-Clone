@@ -1,9 +1,8 @@
 
 
 export const PrimaryData = ({allData}) =>{
-    const {data, imgIndex, setImgIndex} = allData;
-
-    console.log(imgIndex, data)
+    const {userId, data, imgIndex, setImgIndex} = allData;
+    console.log(userId, data)
     const leftArrowHandler = () => {
         console.log(imgIndex)
         console.log(data.images.length)
@@ -23,7 +22,15 @@ export const PrimaryData = ({allData}) =>{
     };
     return (
         <div className='leftSide'>
-			<h1 className='spotTitle'>{data?.title} by {data?.author.username}</h1>
+            <div className='spotHeader'>
+                <div className='title'>
+			        <h1>{data?.title} by {data?.author.username}</h1>
+                </div>
+                <div className='editDeleteLinks' style={data.ownerId !== userId.id? {'display': 'none'}:null}>
+                    <h1>Edit</h1>
+                    <h1>Delete</h1>
+                </div>
+            </div>
             <div className={'scrollImages'}>
             <i className='fas fa-arrow-alt-circle-left arrow left' onClick={() => {leftArrowHandler()}}/>
 			<img className='spotImage' src={data?.images[imgIndex].url} alt={data?.images[imgIndex].alt}></img>

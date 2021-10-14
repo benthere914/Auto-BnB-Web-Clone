@@ -23,7 +23,7 @@ export const Spot = ({userId}) => {
         {
             firstLoad?(
 			<div className='mainSpotPage'>
-                <PrimaryData allData={{data, imgIndex, setImgIndex}}/>
+                <PrimaryData allData={{userId, data, imgIndex, setImgIndex}}/>
                 <SecondaryData allData={{userId, data}}/>
 			</div>)
                         : null}
