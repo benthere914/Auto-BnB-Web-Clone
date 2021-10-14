@@ -70,7 +70,7 @@ return (
                         </div>
                             :null}
                         {editing && e.id === idInQuestion?(<EditReview data={{editReviewSubmitHandler, setEditReview, e, editReview}}/>):<p className='review' >{e.review}</p>}
-                        {!editing || e.id !== idInQuestion && +e.author.id === +userId.id?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
+                        {!editing && +e.author.id === +userId.id || e.id !== idInQuestion && +e.author.id === +userId.id?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
                     </div>
                 </div>
             ))}
