@@ -6,7 +6,7 @@ import { ChangeUser } from "./ChangeUsername";
 import { ChangePass } from "./ChangePass";
 import { ChangeImg } from "./ChangeImg";
 import { DefaultView } from "./DefaultView";
-export const MyAccountModal = () => {
+export const MyAccountModal = ({userId}) => {
     const {setMyAccountModal} = useMyAccountModal();
     const [defaultView, setDefaultView] = useState(true);
     const [changeUsername, setChangeUsername] = useState(false);

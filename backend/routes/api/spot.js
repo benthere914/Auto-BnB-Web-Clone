@@ -54,8 +54,10 @@ router.post('/', asyncHandler(async (req, res) => {
     if (Number.isNaN(pricePerDay) || pricePerDay < 0 || !(pricePerDay)){errors['price'] = ('Price must be a valid price')}
     if (Number.isNaN(type) || type === 0 || type < 0 || type > 6){errors['type'] = ('Type must be a valid type')}
     if (features.length < 3){errors['features'] = ('Must Contain at least 3 features')}
+
     let filteredUrls = urls.filter((e) =>  (e !== '' && e.startsWith('http')));
-    if (!filteredUrls.length){errors['urls'] = ('Image urls must be valid')}
+    console.log(urls)
+    if (filteredUrls.length > 3){errors['urls'] = ('Must have at least 3 photos')}
     if (Object.entries(errors).length){console.log(errors);return res.json({'errors' : errors})}
     const newSpot = await Spot.create({ownerId: userId, title, description, mileage, year, pricePerDay, typeId: type, createdAt, updatedAt })
     let spotId = newSpot.id;

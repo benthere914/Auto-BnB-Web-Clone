@@ -39,7 +39,7 @@ function App() {
 
                 {loginModal?(<LoginFormPage/>): null}
                 {signupModal?(<SignupFormPage/>): null}
-                {myAccountModal?(<MyAccountModal/>):null}
+                {myAccountModal?(<MyAccountModal userId={userId}/>):null}
                 <Navigation/>
                 {isLoaded && (
                     <Switch>

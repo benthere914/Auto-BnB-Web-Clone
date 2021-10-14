@@ -75,8 +75,8 @@ export const Host = ({userId}) => {
     let state = useSelector(state => state.spot);
     const formSubmitHandler = (e) => {
         e.preventDefault();
-        console.log({title, description, mileage, year, pricePerDay, type, features, urls: urls.split('\n')})
-        let payload = {userId: userId.id, title, description, mileage, year, pricePerDay, type, features: new Array(...features), urls: urls.split('\n')}
+        console.log({title, description, mileage, year, pricePerDay, type, features, urls: urls.split(',')})
+        let payload = {userId: userId.id, title, description, mileage, year, pricePerDay, type, features: new Array(...features), urls: urls.split(',')}
         dispatch(spotActions.addSpot(payload));
     }
 

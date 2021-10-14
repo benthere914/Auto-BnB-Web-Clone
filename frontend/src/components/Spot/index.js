@@ -24,7 +24,7 @@ export const Spot = ({userId}) => {
         {
             firstLoad && secLoad?(
 			<div className='mainSpotPage'>
-                <LeftSidePost allData={{data, imgIndex}}/>
+                <LeftSidePost allData={{data, imgIndex, setImgIndex}}/>
                 <RightSidePost userId={userId}/>
 			</div>)
                         : null}
