@@ -35,7 +35,6 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
         author = {id: author.dataValues.id, username: author.dataValues.username, email: author.dataValues.email};
         reviews[i].author = author;
     }
-    console.log(reviews)
     res.json({reviews})
 }))
 

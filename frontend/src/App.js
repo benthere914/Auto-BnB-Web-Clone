@@ -33,6 +33,7 @@ function App() {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 	}, [dispatch]);
     const userId = useSelector(state => state.session.user);
+    const spot = useSelector(state => state.spot)
 	return (
 		<>
             <div onClick={()=>clickHandler()}>
@@ -48,6 +49,9 @@ function App() {
                         </Route>
                         <Route path='/types/:typeId'>
                             <SpotsFeed/>
+                        </Route>
+                        <Route path='/spots/:spotId/edit'>
+                            <Host userId={userId} getExtraData={true}/>
                         </Route>
                         <Route path='/spots/:spotId'>
                             <Spot userId={userId}/>

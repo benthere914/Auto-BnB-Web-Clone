@@ -4,11 +4,18 @@ const LOADAll = 'spot/load/all';
 const LOADONE = 'spot/load/one';
 const ADDONE = 'spot/add/one';
 const RESET = 'spot/reset';
-
+const EDITONE = 'spot/reset/one';
 
 const loadAllSpots = (payload) => {
     return {
         type: LOADAll,
+        payload
+    }
+}
+
+const edit_one_spot = (payload) => {
+    return {
+        type: EDITONE,
         payload
     }
 }
@@ -42,6 +49,13 @@ export const loadSpots = (id) => async (dispatch) => {
 	return response;
 };
 
+export const editSpot = (id, payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${id}`, {'method': 'PUT', 'body': JSON.stringify(payload)});
+    const data = await response.json();
+    dispatch(edit_one_spot(data));
+    return data;
+}
+
 export const loadSpot = (id) => async (dispatch) => {
 	const response = await csrfFetch(`/api/spots/${+id}`);
 	const data = await response.json();
@@ -71,6 +85,8 @@ const spotReducer = (state = {}, action) => {
         case LOADONE:
             return action.payload
         case ADDONE:
+            return action.payload
+        case EDITONE:
             return action.payload
         case RESET:
             return {};

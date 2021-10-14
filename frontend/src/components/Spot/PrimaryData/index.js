@@ -1,11 +1,13 @@
-
+import { useHistory } from "react-router";
+import { useParams } from "react-router";
 
 export const PrimaryData = ({allData}) =>{
+    const params = useParams();
+    const history = useHistory();
     const {userId, data, imgIndex, setImgIndex} = allData;
     console.log(userId, data)
     const leftArrowHandler = () => {
-        console.log(imgIndex)
-        console.log(data.images.length)
+
         if (imgIndex === 0){
             setImgIndex(data.images.length - 1 );
             return
@@ -13,13 +15,16 @@ export const PrimaryData = ({allData}) =>{
         setImgIndex((prev) => prev - 1);
     };
     const rightArrowHandler = () => {
-        console.log(imgIndex)
         if (imgIndex === data.images.length - 1){
             setImgIndex(0);
             return
         }
         setImgIndex((prev) => prev + 1)
     };
+    const editPostClickHandler = () => {
+        history.push(`/spots/${params.spotId}/edit`)
+    }
+    const deleteClickHandler = () => {}
     return (
         <div className='leftSide'>
             <div className='spotHeader'>
@@ -27,7 +32,7 @@ export const PrimaryData = ({allData}) =>{
 			        <h1>{data?.title} by {data?.author.username}</h1>
                 </div>
                 <div className='editDeleteLinks' style={data.ownerId !== userId.id? {'display': 'none'}:null}>
-                    <h1>Edit</h1>
+                    <h1 onClick={() => editPostClickHandler()}>Edit</h1>
                     <h1>Delete</h1>
                 </div>
             </div>
