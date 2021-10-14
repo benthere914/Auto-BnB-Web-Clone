@@ -19,9 +19,14 @@
 
 
 
+.arrow.left{
+    position: relative;
+    padding: 0px 50px 0px 35px;
+}
 
-
-
+.arrow.right{
+    padding: 0px 35px 0px 50px;
+}
 
 .scrollImages{
     background-color: lightblue;
@@ -73,6 +78,8 @@
     border-radius: 25px;
     margin-top: 25px;
     height: 84px;
+    position: relative;
+    top: 25px;
 }
 
 .authorPhoto{
@@ -120,6 +127,31 @@
 .editReviewLink{
     width: min-content;
     margin: 0;
+    cursor: pointer;
 
 
+}
+
+.editReview{
+}
+
+.newReview{
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    top: 25px;
+    padding-bottom: 25px;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+}
+
+.newReview * {
+    padding: 5px;
+    margin: 5px;
+}
+
+.newReview button{
+    border-radius: 25px;
+    cursor: pointer;
 }

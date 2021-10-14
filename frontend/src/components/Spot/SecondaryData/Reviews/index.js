@@ -54,6 +54,7 @@ export const Reviews = ({userId}) => {
 return (
     <div>
         <form className='newReview' onSubmit={(e) => reviewPostHandler(e)}>
+            <label>Have you already leased this vehicle? Leave a review below.</label>
             <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
             <button>Submit</button>
         </form>
