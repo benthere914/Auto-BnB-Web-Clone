@@ -16,7 +16,6 @@ router.get('/:id/spots', asyncHandler( async (req, res) => {
     let spots = await Spot.findAll({where: {typeId}, include: [Type]});
     for (let i = 0; i < spots.length; i++){
         spots[i] = spots[i].dataValues;
-        console.log(spots[i])
         let spotId = spots[i].id;
         let ownerId = spots[i].ownerId;
         let title = spots[i].title;

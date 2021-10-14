@@ -1,15 +1,19 @@
 import { useState } from "react"
 import { useSelector } from "react-redux";
 
-export const Urls = ({data}) => {
-    const {urls, setUrls, urlsError} = data
-    const [input1, setInput1] = useState('');
-    const [input2, setInput2] = useState('');
-    const [input3, setInput3] = useState('');
-    const [input4, setInput4] = useState('');
-    const [input5, setInput5] = useState('');
-    const [input6, setInput6] = useState('');
-    const [input7, setInput7] = useState('');
+export const Urls = ({allData}) => {
+    const {
+            input1, setInput1,
+            input2, setInput2,
+            input3, setInput3,
+            input4, setInput4,
+            input5, setInput5,
+            input6, setInput6,
+            input7, setInput7,
+            urls, setUrls,
+            urlsError
+        } = allData
+
         let tempArr = [];
         if (input1){tempArr.push(input1)}
         if (input2){tempArr.push(input2)}

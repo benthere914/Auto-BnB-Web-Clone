@@ -39,8 +39,7 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
 router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
     const id= req.params.id;
     const user = await User.findOne({where: {id}});
-    console.log(user.dataValues, 'this is the datavalues')
-    console.log(req.body);
+
     res.json({'message': 'this is a test'})
 }))
 
