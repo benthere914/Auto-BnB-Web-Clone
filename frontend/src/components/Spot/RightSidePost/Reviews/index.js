@@ -1,10 +1,11 @@
 import { convert } from '../../../../utils/date';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {  useState } from 'react';
+import {  useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import * as reviewActions from '../../../../store/review';
 import md5 from 'md5';
+import { useEffect } from 'react';
 export const Reviews = ({userId}) => {
     const { spotId } = useParams();
 	let dispatch = useDispatch();
@@ -13,11 +14,19 @@ export const Reviews = ({userId}) => {
     const [editing, setEditing] = useState(false);
     const [idInQuestion, setIdInQuestion] = useState(0);
     const [editReview, setEditReview] = useState('')
-
+    // const endOfReviews = useRef(null);
+    // const scrollToBottom = () => {
+    //     endOfReviews.current.scrollIntoView({behavior: 'smooth'})
+    // }
+    // useEffect(() => {scrollToBottom()}, [reviews])
     const reviewPostHandler = (e) => {
         e.preventDefault();
-        dispatch(reviewActions.addReview(+spotId, newReview, userId.id));
-        setNewReview('');
+        dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then(() =>
+        {
+            setNewReview('');
+            window.scroll({top: 1000, left: 0, behavior: 'smooth'})
+        }
+        );
     }
 
     const deleteReviewHandler = (e) => {

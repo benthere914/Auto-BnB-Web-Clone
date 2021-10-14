@@ -16,8 +16,10 @@
 
 .spotImage{
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
-    width: 1200px;
+    width: 1000px;
     height: 700px;
+    margin: 25px;
+
 }
 
 .rightSide{
@@ -47,4 +49,17 @@
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
 
+}
+
+.scrollImages{
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left{
+    position: relative;
+    /* margin: 50px; */
 }
