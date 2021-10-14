@@ -202,3 +202,36 @@ div.title{
     border-radius: 25px;
     cursor: pointer;
 }
+
+
+.deleteModal{
+    box-shadow: 0 0 0 70vmax rgba(0,0,0,0.5);
+    z-index: 2;
+    background-color: lightblue;
+    position: fixed;
+    left: 600px;
+    top: 300px;
+    border: solid black 5px;
+    width: 700px;
+    height: 300px;
+}
+
+.deleteModalTitle{
+    font-size: 35px;
+    text-align: center;
+}
+
+.deleteModal button{
+    padding: 25px 100px;
+    border-radius: 35px;
+    font-size: 50px;
+    position: relative;
+    cursor: pointer;
+}
+
+.yesDelete{
+    left: 50px;
+}
+.noDelete{
+    left: 100px;
+}

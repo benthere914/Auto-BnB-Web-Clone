@@ -1,11 +1,14 @@
 import { useHistory } from "react-router";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import * as spotActions from '../../../store/spot'
 
 export const PrimaryData = ({allData}) =>{
+    const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
-    const {userId, data, imgIndex, setImgIndex} = allData;
-    console.log(userId, data)
+    const {userId, data, imgIndex, setImgIndex, openDeleteModalHandler} = allData;
     const leftArrowHandler = () => {
 
         if (imgIndex === 0){
@@ -24,8 +27,9 @@ export const PrimaryData = ({allData}) =>{
     const editPostClickHandler = () => {
         history.push(`/spots/${params.spotId}/edit`)
     }
-    const deleteClickHandler = () => {}
+   
     return (
+        <>
         <div className='leftSide'>
             <div className='spotHeader'>
                 <div className='title'>
@@ -33,7 +37,7 @@ export const PrimaryData = ({allData}) =>{
                 </div>
                 <div className='editDeleteLinks' style={data.ownerId !== userId.id? {'display': 'none'}:null}>
                     <h1 onClick={() => editPostClickHandler()}>Edit</h1>
-                    <h1>Delete</h1>
+                    <h1 onClick={() => openDeleteModalHandler()}>Delete</h1>
                 </div>
             </div>
             <div className={'scrollImages'}>
@@ -42,5 +46,6 @@ export const PrimaryData = ({allData}) =>{
             <i className='fas fa-arrow-alt-circle-right arrow right' onClick={() => {rightArrowHandler()}}/>
             </div>
 		</div>
+        </>
     )
 }
