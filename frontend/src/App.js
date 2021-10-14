@@ -33,11 +33,9 @@ function App() {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 	}, [dispatch]);
     const userId = useSelector(state => state.session.user);
-    const spot = useSelector(state => state.spot)
 	return (
 		<>
             <div onClick={()=>clickHandler()}>
-
                 {loginModal?(<LoginFormPage/>): null}
                 {signupModal?(<SignupFormPage/>): null}
                 {myAccountModal?(<MyAccountModal userId={userId}/>):null}

@@ -1,9 +1,8 @@
 export const VehicleDetails = ({ allData }) => {
 	const { data } = allData;
-	console.log(123, data);
 	return (
 		<div>
-			
+
 			<div className="spotFeatures">
 				<div className="feature">
 					<i className="fas fa-clock"></i>
@@ -13,7 +12,7 @@ export const VehicleDetails = ({ allData }) => {
 					</div>
 				</div>
 
-				<div className="feature" a>
+				<div className="feature">
 					<i className="fas fa-pump-soap"></i>
 					<div className="featureText">
 						<p>Enhanced Clean</p>
@@ -22,7 +21,7 @@ export const VehicleDetails = ({ allData }) => {
 				</div>
 
 				{data.features.map((e) => (
-					<div className="feature">
+					<div className="feature" key={e}>
 						<i className="fas fa-star"></i>
 						<div className="featureText">
 							<p>Bonus Feature</p>

@@ -13,7 +13,7 @@ export const Cards = ({data}) => {
                         <p>{e[1].title}</p>
                         <div className='mainDetails'>
                             <p>{`${e[1].mileage} miles, ${e[1].year}`}</p>
-                        <p className='features'>{e[1].features.slice(0,3).join(', ')}</p>
+                            <p className='features'>{e[1].features.slice(0,3).join(', ')}</p>
                         </div>
                     </div>
                     <div className='pricePerDayOnFeed'>
