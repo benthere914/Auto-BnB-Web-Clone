@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 export const PrimaryData = ({allData}) =>{
     const params = useParams();
     const history = useHistory();
-    const {userId, data, imgIndex, setImgIndex, openDeleteModalHandler} = allData;
+    let {userId, data, imgIndex, setImgIndex, openDeleteModalHandler} = allData;
+    if (!userId){
+        userId = {id: 0, username: 'anonymous'}
+    }
     const leftArrowHandler = () => {
 
         if (imgIndex === 0){

@@ -45,7 +45,9 @@ export const loadReviews = (id) => async (dispatch) => {
 export const addReview = (spotId, review, userId) => async (dispatch) => {
 	const response = await csrfFetch(`/api/reviews`, {'method': 'POST', 'body': JSON.stringify({spotId, review, userId})});
 	const data = await response.json();
-	dispatch(add_Review(data));
+    if (!data.errors){
+	    dispatch(add_Review(data));
+    }
 	return data;
 };
 

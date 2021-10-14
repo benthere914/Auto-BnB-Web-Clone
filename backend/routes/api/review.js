@@ -9,8 +9,12 @@ const router = express.Router();
 
 router.post('/', asyncHandler(async (req, res) => {
     const {spotId, userId, review} = req.body;
-    if (!userId){
-        res.json({error: 'must be logged in'});
+    let errors = {};
+    if (!userId){errors['user'] = 'not logged in'}
+    if (!review.trim()){errors['review'] = 'not a valid review'}
+    if (!spotId){errors['spot'] = 'not a valid page'}
+    if (Object.entries(errors).length){
+        res.json({errors});
         return;
     }
     const newReview = await Review.create({spotId, userId, review})

@@ -1,4 +1,5 @@
 import { convert } from '../../../../utils/date';
+import { NotLoggedInModal } from './NotLoggedInModal';
 import uuid from 'react-uuid'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -21,13 +22,30 @@ export const Reviews = ({userId}) => {
     const [editing, setEditing] = useState(false);
     const [idInQuestion, setIdInQuestion] = useState(0);
     const [editReview, setEditReview] = useState('');
+    const [notLoggedInModal, setNotLoggedInModal] = useState(true);
+    const [specs, setSpecs] = useState(700);
+    useEffect(() => {
+        let interval = setInterval(() => {
+            if (specs >= 695){
+                console.log(specs)
+                console.log(typeof specs)
+                setSpecs((prev) => prev - 1)
+            }
+            else{
+                clearInterval(interval)
+            }
+        }, 500, specs)
+    }, [notLoggedInModal])
+
     const reviewPostHandler = (e) => {
         e.preventDefault();
         dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then((e) =>
 
         {
             if (e.error === 'must be logged in'){}
+            setNotLoggedInModal(true);
             setNewReview('');
+
         }
         );
     }
@@ -51,6 +69,7 @@ export const Reviews = ({userId}) => {
 
 return (
     <div>
+        {notLoggedInModal && <NotLoggedInModal specs={specs}/>}
         <form className='newReview' onSubmit={(e) => reviewPostHandler(e)}>
             <label>Have you already leased this vehicle? Leave a review below.</label>
             <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
