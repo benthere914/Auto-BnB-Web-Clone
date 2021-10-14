@@ -1,6 +1,6 @@
 import './index.css';
-import { RightSidePost } from './RightSidePost';
-import { LeftSidePost } from './LeftSidePost';
+import { SecondaryData } from './SecondaryData';
+import { PrimaryData } from './PrimaryData';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -11,9 +11,8 @@ export const Spot = ({userId}) => {
     const { spotId } = useParams();
 	let dispatch = useDispatch();
     const [firstLoad, setFirstLoad] = useState(false);
-    const [secLoad, setSecLoad] = useState(false);
+
 	useEffect(() => {dispatch(spotActions.loadSpot(+spotId)).then(() => setFirstLoad(true))}, [dispatch, spotId]);
-    useEffect(() => {dispatch(reviewActions.loadReviews(+spotId)).then(() => setSecLoad(true))}, [dispatch, spotId]);
 	const { data } = useSelector((state) => state.spot);
     const [imgIndex, setImgIndex] = useState(0);
 
@@ -22,10 +21,10 @@ export const Spot = ({userId}) => {
 	return (
 		<>
         {
-            firstLoad && secLoad?(
+            firstLoad?(
 			<div className='mainSpotPage'>
-                <LeftSidePost allData={{data, imgIndex, setImgIndex}}/>
-                <RightSidePost userId={userId}/>
+                <PrimaryData allData={{data, imgIndex, setImgIndex}}/>
+                <SecondaryData allData={{userId, data}}/>
 			</div>)
                         : null}
 		</>

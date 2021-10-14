@@ -9,10 +9,12 @@ const router = express.Router();
 
 router.post('/', asyncHandler(async (req, res) => {
     const {spotId, userId, review} = req.body;
+    if (!userId){
+        res.json({error: 'must be logged in'});
+        return;
+    }
     const newReview = await Review.create({spotId, userId, review})
-    console.log(req.body);
     const reviews = await Review.findAll({where: {spotId}});
-    console.log(reviews)
     for (let i = 0; i < reviews.length; i++){
         reviews[i] = reviews[i].dataValues;
         let author = await User.findByPk(reviews[i].userId);
