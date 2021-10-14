@@ -98,6 +98,7 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
         await images[j].destroy();
     }
     for (let i = 0; i < features.length; i++){
+        console.log(features[i])
         await Feature.create({spotId, feature: features[i], createdAt, updatedAt})
     }
     for (let j = 0; j < urls.length; j++){

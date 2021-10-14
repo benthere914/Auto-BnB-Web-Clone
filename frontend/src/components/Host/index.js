@@ -49,8 +49,8 @@ export const Host = ({userId, getExtraData}) => {
     const featureData = [
         {string: 'Leather Seats' },
         {string: 'Wifi'},
-        {string: 'Movie Screens in the Back'},
-        {string: 'Adaptive Cruise Controll'},
+        {string: 'Movie Screens in the back'},
+        {string: 'Adaptive Cruise Control'},
         {string: 'Parking Assist'},
         {string: '360 Degree Camera'},
         {string: 'Automotive Night Vision'},
