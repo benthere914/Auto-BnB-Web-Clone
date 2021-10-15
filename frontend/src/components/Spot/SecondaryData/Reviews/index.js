@@ -1,5 +1,6 @@
 import { convert } from '../../../../utils/date';
-import uuid from 'react-uuid'
+import { NotLoggedInModal } from './NotLoggedInModal';
+// import uuid from 'react-uuid'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {  useState } from 'react';
@@ -7,8 +8,7 @@ import { useDispatch } from 'react-redux';
 import * as reviewActions from '../../../../store/review';
 import md5 from 'md5';
 import { useEffect } from 'react';
-import { EditReview } from './EditReview';
-import { EditLinks } from './EditLinks';
+
 export const Reviews = ({userId}) => {
     let dispatch = useDispatch();
     const { spotId } = useParams();
@@ -20,14 +20,23 @@ export const Reviews = ({userId}) => {
     const [newReview, setNewReview] = useState('');
     const [editing, setEditing] = useState(false);
     const [idInQuestion, setIdInQuestion] = useState(0);
+    const [notLoggedInModal, setNotLoggedInModal] = useState(false);
     const [editReview, setEditReview] = useState('');
+
+
+
     const reviewPostHandler = (e) => {
         e.preventDefault();
         dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then((e) =>
-
         {
-            if (e.error === 'must be logged in'){}
-            setNewReview('');
+            console.log(e.errors)
+            if (e.errors){
+                if (e.errors.user === 'not logged in'){
+                    setNotLoggedInModal(true);
+                    setNewReview('');
+                    setTimeout(() => {setNotLoggedInModal(false)}, 3000)
+                }
+            }
         }
         );
     }
@@ -51,26 +60,57 @@ export const Reviews = ({userId}) => {
 
 return (
     <div>
+        {notLoggedInModal && <NotLoggedInModal allData={{ notLoggedInModal}}/>}
         <form className='newReview' onSubmit={(e) => reviewPostHandler(e)}>
             <label>Have you already leased this vehicle? Leave a review below.</label>
             <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
             <button>Submit</button>
+
         </form>
         <div>
+
             {reviews?.map((e)=>(
-                <div className='reviewDiv' key={uuid()}>
+
+
+                <div className='reviewDiv' key={e.id}>
+
                     {(!editing) || (editing && e.id !== idInQuestion)?<img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
 
                     <div className='reviewText'>
-                        {(!editing) || (editing && e.id !== idInQuestion)?<div className='topOfReview'>
-                            <p className='username'>{e.author.username}</p>
-                            <p className='date'>{convert(e.updatedAt)}</p>
-                        </div>
-                            :null}
-                        {(editing && e.id === idInQuestion)?(<EditReview data={{editReviewSubmitHandler, setEditReview, e, editReview}}/>):<p className='review' >{e.review}</p>}
-                        {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
+
+                        {(!editing) || (editing && e.id !== idInQuestion)?(
+
+                            <div className='topOfReview'>
+                                <p className='username'>{e.author.username}</p>
+                                <p className='date'>{convert(e.updatedAt)}</p>
+                            </div>
+
+                        ): null}
+
+
+                        {(editing && e.id === idInQuestion)?(
+
+                            <form className='editReview' onSubmit={(event) => editReviewSubmitHandler(event, e)}>
+                                <input value={editReview} onChange={(event) => {setEditReview(event.target.value); console.log(editing, e.id, idInQuestion, editReview)}}></input>
+                                <button>Submit</button>
+                            </form>
+
+                        ):
+
+                            <p className='review' >{e.review}</p>}
+
+                        {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(
+
+                            <div className='editReviewLinks'>
+                                <p className='editReviewLink' onClick={() => editReviewClickHandler(e)}>edit</p>
+                                <p className='editReviewLink' onClick={() => deleteReviewHandler(e)}>delete</p>
+                            </div>
+
+                        ): null}
+
                     </div>
                 </div>
+
             ))}
         </div>
 

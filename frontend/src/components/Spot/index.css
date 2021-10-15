@@ -235,3 +235,44 @@ div.title{
 .noDelete{
     left: 100px;
 }
+
+.notLoggedInModal{
+    border: solid black 2px;
+    width: 300px;
+    height: 100px;
+    background-color: white;
+    position: fixed;
+    right: 800px;
+    z-index: 2;
+    bottom: 1300px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.notLoggedInModal h2{
+    text-align: center;
+}
+
+.move{
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
+
+
+@keyframes slidein {
+    from {
+      bottom: 1000px;
+    }
+
+    50% {
+      bottom: 800px;
+    }
+
+    to {
+      bottom: 1000px;
+    }
+  }
