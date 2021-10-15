@@ -22,6 +22,7 @@ export const Reviews = ({userId}) => {
     const [idInQuestion, setIdInQuestion] = useState(0);
     const [notLoggedInModal, setNotLoggedInModal] = useState(false);
     const [editReview, setEditReview] = useState('');
+    const [a, setA] = useState('')
 
 
     const reviewPostHandler = (e) => {
@@ -64,10 +65,14 @@ return (
             <label>Have you already leased this vehicle? Leave a review below.</label>
             <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
             <button>Submit</button>
+
         </form>
         <div>
+
             {reviews?.map((e)=>(
                 <div className='reviewDiv' key={uuid()}>
+                    <input value={a} onChange={(e) => {setA(e.target.value)}}></input>
+
                     {(!editing) || (editing && e.id !== idInQuestion)?<img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
 
                     <div key={uuid()} className='reviewText'>
