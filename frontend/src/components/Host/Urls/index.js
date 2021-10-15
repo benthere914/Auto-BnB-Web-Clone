@@ -24,7 +24,7 @@ export const Urls = ({allData}) => {
 
     return (
         <div className='addImageDiv'>
-        <label>{urlsError?urlsError:'Add one image url per line'}</label>
+        <label style={urlsError?{backgroundColor: 'pink', width: 220}:{}}>{urlsError?urlsError:'Add one image url per line'}</label>
         <input value={input1} onChange={(e) => setInput1(e.target.value)}></input>
         <input value={input2} onChange={(e) => setInput2(e.target.value)}></input>
         <input value={input3} onChange={(e) => setInput3(e.target.value)}></input>
