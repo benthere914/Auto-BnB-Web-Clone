@@ -40,7 +40,7 @@ export const MyAccountModal = ({userId}) => {
     const data = {funcs: {'back': backView, 'default': setDefaultView, 'email': setChangeEmail, 'user': setChangeUsername, 'pass': setChangePass, 'img': setChangeImg}}
     return (
         <div className='myAccountModal' style={{width, height}}>
-            {defaultView? (<DefaultView data={data}/>): null}
+            {defaultView? (<DefaultView data={data} userId={userId}/>): null}
             {changeEmail? (<ChangeEmail data={data}/>): null}
             {changeUsername? (<ChangeUser data={data}/>): null}
             {changePass? (<ChangePass data={data}/>): null}

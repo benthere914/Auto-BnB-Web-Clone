@@ -22,7 +22,7 @@ export const DropDownMenu = ({setNavDropDown}) => {
                 <>
                     <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(false);setNavDropDown(false);dispatch(sessionActions.logout())}}>Log Out</h3>
                     <h3 onClick={() => setMyAccountModal(true)}>My Account</h3>
-                    <h3>My Profile</h3>
+                    {/* <h3>My Profile</h3> */}
                     <h3 className='hostLink' onClick={() => {setNavDropDown(false);setLoginModal(!loggedIn);dispatch(spotActions.resetSpot());history.push('/host')}}>Host Your Car</h3>
                 </>
             ): (

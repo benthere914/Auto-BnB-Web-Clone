@@ -88,7 +88,7 @@ return (
             <button onMouseDown={(e) => {reviewPostHandler(e)}}>Submit</button>
 
         </form>
-        <div>
+        <div className='reviews'>
 
             {reviews?.map((e)=>(
 
