@@ -1,0 +1,17 @@
+.footerMainDiv{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(173,216,230);
+}
+
+.footerMainDiv img{
+    height: 50px;
+    width: 50px;
+    margin: 15px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}

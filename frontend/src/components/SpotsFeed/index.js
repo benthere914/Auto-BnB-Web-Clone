@@ -17,9 +17,8 @@ export const SpotsFeed = () => {
     let type;
     if(arr[0]){
         length = arr.length;
-        type = arr[0][1].Type;
+        type = arr[0][1].type;
     }
-
     return (
         <>
             <Top data={{length, type}}/>
