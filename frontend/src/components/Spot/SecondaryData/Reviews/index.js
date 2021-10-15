@@ -29,30 +29,34 @@ export const Reviews = ({userId}) => {
 
     const reviewPostHandler = (e) => {
         e.preventDefault();
-        dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then((e) =>
-        {
-            console.log(e.errors)
-            if (e.errors){
-                if (e.errors.user === 'not logged in'){
-                    setError('You are not logged in. You must be logged in to leave a review');
-                }
-                else if (e.errors.review === 'not a valid review'){
-                    setError('You have not typed a valid review. Please check your review and try again');
+        if(resizeTextArea === 'down'){setResizeTextArea('up');}
+        if (!errorModal){
+            dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then((e) =>
+                {
+                    console.log(e.errors)
+                    if (e.errors){
+                        if (e.errors.user === 'not logged in'){
+                            setError('You are not logged in. You must be logged in to leave a review');
+                        }
+                        else if (e.errors.review === 'not a valid review'){
+                            setError('You have not typed a valid review. Please check your review and try again');
 
+                        }
+                        else if (e.errors.page === 'not a valid spot'){
+                            setError('The page you are on no longer exists please reload the page to try again');
+                        }
+                        else{
+                            setError('There was an unexpected error. Please try again later.')
+                        }
+                        setErrorModal(true);
+                        setNewReview('');
+                        setTimeout(() => {setErrorModal(false)}, 5000)
+                    }
                 }
-                else if (e.errors.page === 'not a valid spot'){
-                    setError('The page you are on no longer exists please reload the page to try again');
-                }
-                else{
-                    setError('There was an unexpected error. Please try again later.')
-                }
-                setErrorModal(true);
-                setNewReview('');
-                setTimeout(() => {setErrorModal(false)}, 5000)
-            }
+            );
         }
-        );
     }
+
 
     const deleteReviewHandler = (e) => {
         dispatch(reviewActions.deleteReview(e.id))
@@ -78,9 +82,9 @@ export const Reviews = ({userId}) => {
 return (
     <div>
         {errorModal && <ErrorModal allData={{ errorModal, error}}/>}
-        <form className='newReview' onSubmit={(e) => reviewPostHandler(e)}>
+        <form className='newReview' onSubmit={(e) => {e.preventDefault(); setNewReview(''); console.log(e)}}>
             <label>Have you already leased this vehicle? Leave a review below.</label>
-            <textarea className={resizeTextArea === 'up'?'resizeTextAreaUp':resizeTextArea === 'down'? 'resizeTextAreaDown':null} onBlur={() => {setResizeTextArea('up')}} onClick={() => {setResizeTextArea('down')}} value={newReview} onChange={(e) => setNewReview(e.target.value)}></textarea>
+            <textarea className={resizeTextArea === 'up'?'resizeTextAreaUp':resizeTextArea === 'down'? 'resizeTextAreaDown':null} onBlur={() => {if (resizeTextArea === 'down'){setResizeTextArea('up')}}} onClick={() => {setResizeTextArea('down')}} value={newReview} onChange={(e) => setNewReview(e.target.value)}></textarea>
             <button onMouseDown={(e) => {reviewPostHandler(e)}}>Submit</button>
 
         </form>

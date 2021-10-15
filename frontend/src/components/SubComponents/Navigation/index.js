@@ -13,7 +13,7 @@ function Navigation() {
 			<ul className="navbar">
 				<li>
 					<NavLink className="home" exact to="/" onClick={() => {dispatch(spotActions.resetSpot())}}>
-						CarBnB
+						AutoBnB
 					</NavLink>
 				</li>
 				<li>
