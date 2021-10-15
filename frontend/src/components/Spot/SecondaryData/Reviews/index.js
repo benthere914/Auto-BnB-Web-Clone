@@ -1,5 +1,5 @@
 import { convert } from '../../../../utils/date';
-import { NotLoggedInModal } from './NotLoggedInModal';
+import { ErrorModal } from './ErrorModal';
 // import uuid from 'react-uuid'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -20,8 +20,10 @@ export const Reviews = ({userId}) => {
     const [newReview, setNewReview] = useState('');
     const [editing, setEditing] = useState(false);
     const [idInQuestion, setIdInQuestion] = useState(0);
-    const [notLoggedInModal, setNotLoggedInModal] = useState(false);
+    const [errorModal, setErrorModal] = useState(false);
     const [editReview, setEditReview] = useState('');
+    const [resizeTextArea, setResizeTextArea] = useState(false);
+    const [error, setError] = useState('')
 
 
 
@@ -32,10 +34,21 @@ export const Reviews = ({userId}) => {
             console.log(e.errors)
             if (e.errors){
                 if (e.errors.user === 'not logged in'){
-                    setNotLoggedInModal(true);
-                    setNewReview('');
-                    setTimeout(() => {setNotLoggedInModal(false)}, 3000)
+                    setError('You are not logged in. You must be logged in to leave a review');
                 }
+                else if (e.errors.review === 'not a valid review'){
+                    setError('You have not typed a valid review. Please check your review and try again');
+
+                }
+                else if (e.errors.page === 'not a valid spot'){
+                    setError('The page you are on no longer exists please reload the page to try again');
+                }
+                else{
+                    setError('There was an unexpected error. Please try again later.')
+                }
+                setErrorModal(true);
+                setNewReview('');
+                setTimeout(() => {setErrorModal(false)}, 5000)
             }
         }
         );
@@ -57,14 +70,18 @@ export const Reviews = ({userId}) => {
         setEditing(false);
         setIdInQuestion(0)
     }
-
+    useEffect(()=> {
+        if (resizeTextArea === 'up'){
+            setTimeout(() => {setResizeTextArea(false)}, 1000)
+        }
+    }, [resizeTextArea])
 return (
     <div>
-        {notLoggedInModal && <NotLoggedInModal allData={{ notLoggedInModal}}/>}
+        {errorModal && <ErrorModal allData={{ errorModal, error}}/>}
         <form className='newReview' onSubmit={(e) => reviewPostHandler(e)}>
             <label>Have you already leased this vehicle? Leave a review below.</label>
-            <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
-            <button>Submit</button>
+            <textarea className={resizeTextArea === 'up'?'resizeTextAreaUp':resizeTextArea === 'down'? 'resizeTextAreaDown':null} onBlur={() => {setResizeTextArea('up')}} onClick={() => {setResizeTextArea('down')}} value={newReview} onChange={(e) => setNewReview(e.target.value)}></textarea>
+            <button onMouseDown={(e) => {reviewPostHandler(e)}}>Submit</button>
 
         </form>
         <div>
@@ -74,7 +91,7 @@ return (
 
                 <div className='reviewDiv' key={e.id}>
 
-                    {(!editing) || (editing && e.id !== idInQuestion)?<img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
+                    {(!editing) || (editing && e.id !== idInQuestion)?<div className='authorPhotoDiv'><img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img></div>:null}
 
                     <div className='reviewText'>
 
@@ -91,8 +108,11 @@ return (
                         {(editing && e.id === idInQuestion)?(
 
                             <form className='editReview' onSubmit={(event) => editReviewSubmitHandler(event, e)}>
-                                <input value={editReview} onChange={(event) => {setEditReview(event.target.value); console.log(editing, e.id, idInQuestion, editReview)}}></input>
-                                <button>Submit</button>
+                                <textarea value={editReview} onChange={(event) => {setEditReview(event.target.value); console.log(event.target.scrollHeight)}} ></textarea>
+                                <div>
+                                    <button>Submit</button>
+                                    <button type='button' onClick={() => {setEditing(false); setEditReview('')}}>Back</button>
+                                </div>
                             </form>
 
                         ):
@@ -102,8 +122,8 @@ return (
                         {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(
 
                             <div className='editReviewLinks'>
-                                <p className='editReviewLink' onClick={() => editReviewClickHandler(e)}>edit</p>
-                                <p className='editReviewLink' onClick={() => deleteReviewHandler(e)}>delete</p>
+                                <p className='editReviewLink' onMouseDown={() => editReviewClickHandler(e)}>edit</p>
+                                <p className='editReviewLink' onMouseDown={() => deleteReviewHandler(e)}>delete</p>
                             </div>
 
                         ): null}
