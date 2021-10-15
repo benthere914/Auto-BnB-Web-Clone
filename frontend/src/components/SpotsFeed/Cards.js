@@ -17,7 +17,7 @@ export const Cards = ({data}) => {
                         </div>
                     </div>
                     <div className='pricePerDayOnFeed'>
-                        <p>{`$${e[1].pricePerDay}/Day`}</p>
+                        <p className='priceOnCard'>{`$${e[1].pricePerDay}/Day`}</p>
                     </div>
                 </div>
             ))}
