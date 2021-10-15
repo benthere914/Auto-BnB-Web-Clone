@@ -19,13 +19,18 @@ div.title{
 }
 
 .editDeleteLinks{
-    position: relative;
-    right: 150px;
-    bottom: 15px;
+    position: fixed;
+    right: 550px;
+    /* bottom: 20px; */
+    top: -15px;
+    /* margin-bottom: 35px; */
+    /* margin-top: 15px; */
+    /* bottom: 15px; */
     display: flex;
     width: 200px;
     flex-direction: row;
     justify-content: space-between;
+    z-index: 3;
 
 
 }
@@ -279,7 +284,7 @@ p.username{
 
 .deleteModal{
     box-shadow: 0 0 0 70vmax rgba(0,0,0,0.5);
-    z-index: 2;
+    z-index: 3;
     background-color: lightblue;
     position: fixed;
     left: 600px;
@@ -287,6 +292,9 @@ p.username{
     border: solid black 5px;
     width: 700px;
     height: 300px;
+    /* opacity: 0.6; */
+
+
 }
 
 .deleteModalTitle{
@@ -300,6 +308,12 @@ p.username{
     font-size: 50px;
     position: relative;
     cursor: pointer;
+    opacity: 0.6;
+}
+
+.deleteModal button:hover{
+    /* background-color: lightblue; */
+    opacity: 1;
 }
 
 .yesDelete{
