@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Footer } from './components/SubComponents/Footer';
 import { SpotsFeed } from './components/SpotsFeed';
 import { Spot } from './components/Spot';
 import { Route, Switch } from 'react-router-dom';
@@ -35,7 +36,7 @@ function App() {
     const userId = useSelector(state => state.session.user);
 	return (
 		<>
-            <div onClick={()=>clickHandler()}>
+            <div onClick={()=>clickHandler()} className='mainParentRoot'>
                 {loginModal?(<LoginFormPage/>): null}
                 {signupModal?(<SignupFormPage/>): null}
                 {myAccountModal?(<MyAccountModal userId={userId}/>):null}
@@ -59,6 +60,7 @@ function App() {
                         </Route>
                     </Switch>
                 )}
+                <Footer/>
             </div>
 		</>
 	);
