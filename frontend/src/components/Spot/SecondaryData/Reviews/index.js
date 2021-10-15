@@ -29,6 +29,7 @@ export const Reviews = ({userId}) => {
 
     const reviewPostHandler = (e) => {
         e.preventDefault();
+        setNewReview('');
         if(resizeTextArea === 'down'){setResizeTextArea('up');}
         if (!errorModal){
             dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then((e) =>
@@ -49,7 +50,6 @@ export const Reviews = ({userId}) => {
                             setError('There was an unexpected error. Please try again later.')
                         }
                         setErrorModal(true);
-                        setNewReview('');
                         setTimeout(() => {setErrorModal(false)}, 5000)
                     }
                 }

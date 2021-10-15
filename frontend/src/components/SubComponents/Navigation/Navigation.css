@@ -41,6 +41,7 @@
 .dropMenu{
     background-color: white;
     position: fixed;
+    top: 60px;
     right: 150px;
     border-radius: 15px;
     list-style: none;
