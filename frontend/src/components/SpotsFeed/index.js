@@ -19,10 +19,18 @@ export const SpotsFeed = () => {
         length = arr.length;
         type = arr[0][1].type;
     }
+    console.log(spots)
+    console.log(arr)
     return (
-        <>
-            <Top data={{length, type}}/>
-            <Cards data={arr}/>
-        </>
+
+            <>
+            {arr.length?(
+                <>
+                    <Top data={{length, type}}/>
+                    <Cards data={arr}/>
+                </>
+            ):null}
+            </>
+
     )
 }
