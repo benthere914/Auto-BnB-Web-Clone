@@ -46,6 +46,7 @@ div.title{
     width: 1000px;
     height: 700px;
     margin: 25px;
+    background-color: white;
 }
 
 .editDeleteLinks h1:hover{
