@@ -99,69 +99,70 @@ div.title{
 }
 
 .reviewDiv{
-    margin-left: 25px;
-    width: 500px;
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 25px;
-    margin-top: 25px;
-    height: 84px;
+    width: 500px;
     position: relative;
-    top: 25px;
+    left: 20px;
+    top: 50px;
+    margin-bottom: 25px;
+    border-radius: 25px;
+    display: flex;
+}
+.authorPhotoDiv{
+    /* border: solid 5px; */
+    display: flex;
+    align-items: center;
+    width: 60px;
+    justify-content: flex-end;
+
 }
 
 .authorPhoto{
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    transform: scale(1);
-    width: 32px;
-    height: 32px;
-    margin-left: 15px;
 }
 
-.username{
-    position: relative;
-    left: 40px;
-    top: 15px;
+.topOfReview{
+    /* border: solid black 5px; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 35px;
+    margin: 0;
+    width: 400px;
 }
 
-.date{
-    position: relative;
-    left: 250px;
-    bottom: 20px;
+p.date, p.username{
+    margin: 0;
 }
 
 .review{
-    position: relative;
-    left: 40px;
-    bottom: 20px;
+    text-align: left;
+    /* position: relative;
+    left: 25px; */
+    padding-left: 38px;
+    width: 380px;
+    margin-bottom: 8px;
+
 }
 
-
-
-
 .editReviewLinks{
+    /* border: solid black 5px; */
     display: flex;
-    height: min-content;
-    padding: 0;
-    width: 100px;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    left: 300px;
-    bottom: 30px;
+    justify-content: flex-end;
+    /* height: 15px;
+    align-items: center; */
+    margin-bottom: 8px;
+    margin-right: 7px;
 
 }
 
 .editReviewLink{
-    width: min-content;
-    margin: 0;
     cursor: pointer;
-
-
+    margin: 0 5px;
+    padding: 0;
 }
-
 .editReview{
     position: relative;
     left: 10px;
@@ -169,6 +170,15 @@ div.title{
     flex-direction: column;
     width: 480px;
 
+}
+.editReview textarea{
+    width: 450px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    height: 120px;
+    border: solid 2px;
+    margin-top: 20px;
+    resize: none;
 }
 
 .editReview *{
@@ -179,6 +189,7 @@ div.title{
 .editReview button{
     border-radius: 25px;
     cursor: pointer;
+    width: 200px;
 }
 
 .newReview{
@@ -196,6 +207,24 @@ div.title{
 .newReview * {
     padding: 5px;
     margin: 5px;
+}
+
+.newReview textarea{
+    border: solid 2px;
+    height: 15px;
+    resize: none;
+}
+
+.resizeTextAreaUp{
+    animation-fill-mode: forwards;
+    animation-duration: .7s;
+    animation-name: textareaUp;
+}
+
+.resizeTextAreaDown{
+    animation-fill-mode: forwards !important;
+    animation-duration: .7s;
+    animation-name: textareaDown;
 }
 
 .newReview button{
@@ -236,7 +265,7 @@ div.title{
     left: 100px;
 }
 
-.notLoggedInModal{
+.errorModal{
     border: solid black 2px;
     width: 300px;
     height: 100px;
@@ -252,16 +281,34 @@ div.title{
 
 }
 
-.notLoggedInModal h2{
+.errorModal h2{
     text-align: center;
 }
 
 .move{
-    animation-duration: 3s;
+    animation-duration: 5s;
     animation-name: slidein;
 }
 
+@keyframes textareaDown{
+    from {
+        height: 15px;
+    }
 
+    to{
+        height: 120px;
+    }
+}
+
+@keyframes textareaUp{
+    from{
+        height: 120px
+    }
+
+    to{
+        height: 15px;
+    }
+}
 
 @keyframes slidein {
     from {
