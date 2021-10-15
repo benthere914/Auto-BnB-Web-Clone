@@ -8,8 +8,7 @@ import { useDispatch } from 'react-redux';
 import * as reviewActions from '../../../../store/review';
 import md5 from 'md5';
 import { useEffect } from 'react';
-import { EditReview } from './EditReview';
-import { EditLinks } from './EditLinks';
+
 export const Reviews = ({userId}) => {
     let dispatch = useDispatch();
     const { spotId } = useParams();
@@ -71,7 +70,7 @@ return (
                 <div className='reviewDiv' key={uuid()}>
                     {(!editing) || (editing && e.id !== idInQuestion)?<img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
 
-                    <div className='reviewText'>
+                    <div key={uuid()} className='reviewText'>
 
                         {(!editing) || (editing && e.id !== idInQuestion)?(
 
@@ -85,8 +84,8 @@ return (
 
                         {(editing && e.id === idInQuestion)?(
 
-                            <form className='editReview' onSubmit={(event) => editReviewSubmitHandler(event, e)}>
-                                <input value={editReview} onChange={(e) => setEditReview(e.target.value)}></input>
+                            <form key={uuid()} className='editReview' onSubmit={(event) => editReviewSubmitHandler(event, e)}>
+                                <input value={editReview} onChange={(event) => {setEditReview(event.target.value); console.log(editing, e.id, idInQuestion, editReview)}}></input>
                                 <button>Submit</button>
                             </form>
 
@@ -96,7 +95,7 @@ return (
 
                         {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(
 
-                            <div className='editReviewLinks'>
+                            <div key={uuid()} className='editReviewLinks'>
                                 <p className='editReviewLink' onClick={() => editReviewClickHandler(e)}>edit</p>
                                 <p className='editReviewLink' onClick={() => deleteReviewHandler(e)}>delete</p>
                             </div>
