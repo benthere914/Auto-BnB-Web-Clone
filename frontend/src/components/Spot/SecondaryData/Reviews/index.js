@@ -1,6 +1,6 @@
 import { convert } from '../../../../utils/date';
 import { NotLoggedInModal } from './NotLoggedInModal';
-import uuid from 'react-uuid'
+// import uuid from 'react-uuid'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {  useState } from 'react';
@@ -22,7 +22,7 @@ export const Reviews = ({userId}) => {
     const [idInQuestion, setIdInQuestion] = useState(0);
     const [notLoggedInModal, setNotLoggedInModal] = useState(false);
     const [editReview, setEditReview] = useState('');
-    const [a, setA] = useState('')
+
 
 
     const reviewPostHandler = (e) => {
@@ -70,12 +70,13 @@ return (
         <div>
 
             {reviews?.map((e)=>(
-                <div className='reviewDiv' key={uuid()}>
-                    <input value={a} onChange={(e) => {setA(e.target.value)}}></input>
+
+
+                <div className='reviewDiv' key={e.id}>
 
                     {(!editing) || (editing && e.id !== idInQuestion)?<img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
 
-                    <div key={uuid()} className='reviewText'>
+                    <div className='reviewText'>
 
                         {(!editing) || (editing && e.id !== idInQuestion)?(
 
@@ -89,7 +90,7 @@ return (
 
                         {(editing && e.id === idInQuestion)?(
 
-                            <form key={uuid()} className='editReview' onSubmit={(event) => editReviewSubmitHandler(event, e)}>
+                            <form className='editReview' onSubmit={(event) => editReviewSubmitHandler(event, e)}>
                                 <input value={editReview} onChange={(event) => {setEditReview(event.target.value); console.log(editing, e.id, idInQuestion, editReview)}}></input>
                                 <button>Submit</button>
                             </form>
@@ -100,7 +101,7 @@ return (
 
                         {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(
 
-                            <div key={uuid()} className='editReviewLinks'>
+                            <div className='editReviewLinks'>
                                 <p className='editReviewLink' onClick={() => editReviewClickHandler(e)}>edit</p>
                                 <p className='editReviewLink' onClick={() => deleteReviewHandler(e)}>delete</p>
                             </div>
@@ -109,6 +110,7 @@ return (
 
                     </div>
                 </div>
+
             ))}
         </div>
 
