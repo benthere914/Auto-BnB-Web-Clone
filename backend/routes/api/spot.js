@@ -55,7 +55,8 @@ router.post('/', asyncHandler(async (req, res) => {
     if (features.length < 3){errors['features'] = ('Must Contain at least 3 features')}
 
     let filteredUrls = urls.filter((e) =>  (e !== '' && e.startsWith('http')));
-    if (filteredUrls.length > 3){errors['urls'] = ('Must have at least 3 photos')}
+
+    if (filteredUrls.length < 3){errors['urls'] = ('Must have at least 3 valid photos');}
     if (Object.entries(errors).length){return res.json({'errors' : errors})}
     const newSpot = await Spot.create({ownerId: userId, title, description, mileage, year, pricePerDay, typeId: type, createdAt, updatedAt })
     let spotId = newSpot.id;
@@ -85,7 +86,7 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
     if (features.length < 3){errors['features'] = ('Must Contain at least 3 features')}
 
     let filteredUrls = urls.filter((e) =>  (e !== '' && e.startsWith('http')));
-    if (filteredUrls.length > 3){errors['urls'] = ('Must have at least 3 photos')}
+    if (filteredUrls.length < 3){errors['urls'] = ('Must have at least 3 valid photos')}
     if (Object.entries(errors).length){return res.json({'errors' : errors})}
 
     const spotId = req.params.id;
