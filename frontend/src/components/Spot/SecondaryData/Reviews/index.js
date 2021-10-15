@@ -21,31 +21,22 @@ export const Reviews = ({userId}) => {
     const [newReview, setNewReview] = useState('');
     const [editing, setEditing] = useState(false);
     const [idInQuestion, setIdInQuestion] = useState(0);
+    const [notLoggedInModal, setNotLoggedInModal] = useState(false);
     const [editReview, setEditReview] = useState('');
-    const [notLoggedInModal, setNotLoggedInModal] = useState(true);
-    const [specs, setSpecs] = useState(700);
-    useEffect(() => {
-        let interval = setInterval(() => {
-            if (specs >= 695){
-                console.log(specs)
-                console.log(typeof specs)
-                setSpecs((prev) => prev - 1)
-            }
-            else{
-                clearInterval(interval)
-            }
-        }, 500, specs)
-    }, [notLoggedInModal])
+
 
     const reviewPostHandler = (e) => {
         e.preventDefault();
         dispatch(reviewActions.addReview(+spotId, newReview, userId.id)).then((e) =>
-
         {
-            if (e.error === 'must be logged in'){}
-            setNotLoggedInModal(true);
-            setNewReview('');
-
+            console.log(e.errors)
+            if (e.errors){
+                if (e.errors.user === 'not logged in'){
+                    setNotLoggedInModal(true);
+                    setNewReview('');
+                    setTimeout(() => {setNotLoggedInModal(false)}, 3000)
+                }
+            }
         }
         );
     }
@@ -69,7 +60,7 @@ export const Reviews = ({userId}) => {
 
 return (
     <div>
-        {notLoggedInModal && <NotLoggedInModal specs={specs}/>}
+        {notLoggedInModal && <NotLoggedInModal allData={{ notLoggedInModal}}/>}
         <form className='newReview' onSubmit={(e) => reviewPostHandler(e)}>
             <label>Have you already leased this vehicle? Leave a review below.</label>
             <input value={newReview} onChange={(e) => setNewReview(e.target.value)}></input>
@@ -81,13 +72,37 @@ return (
                     {(!editing) || (editing && e.id !== idInQuestion)?<img alt='author' className='authorPhoto' src={`https://www.gravatar.com/avatar/${md5(e.author.email)}`}></img>:null}
 
                     <div className='reviewText'>
-                        {(!editing) || (editing && e.id !== idInQuestion)?<div className='topOfReview'>
-                            <p className='username'>{e.author.username}</p>
-                            <p className='date'>{convert(e.updatedAt)}</p>
-                        </div>
-                            :null}
-                        {(editing && e.id === idInQuestion)?(<EditReview data={{editReviewSubmitHandler, setEditReview, e, editReview}}/>):<p className='review' >{e.review}</p>}
-                        {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(<EditLinks data={{editReviewClickHandler, deleteReviewHandler, e}}/>): null}
+
+                        {(!editing) || (editing && e.id !== idInQuestion)?(
+
+                            <div className='topOfReview'>
+                                <p className='username'>{e.author.username}</p>
+                                <p className='date'>{convert(e.updatedAt)}</p>
+                            </div>
+
+                        ): null}
+
+
+                        {(editing && e.id === idInQuestion)?(
+
+                            <form className='editReview' onSubmit={(event) => editReviewSubmitHandler(event, e)}>
+                                <input value={editReview} onChange={(e) => setEditReview(e.target.value)}></input>
+                                <button>Submit</button>
+                            </form>
+
+                        ):
+
+                            <p className='review' >{e.review}</p>}
+
+                        {(!editing && +e.author.id === +userId.id) || (e.id !== idInQuestion && +e.author.id === +userId.id)?(
+
+                            <div className='editReviewLinks'>
+                                <p className='editReviewLink' onClick={() => editReviewClickHandler(e)}>edit</p>
+                                <p className='editReviewLink' onClick={() => deleteReviewHandler(e)}>delete</p>
+                            </div>
+
+                        ): null}
+
                     </div>
                 </div>
             ))}
