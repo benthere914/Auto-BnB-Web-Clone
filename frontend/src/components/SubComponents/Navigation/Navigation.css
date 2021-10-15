@@ -4,10 +4,12 @@
     align-items: center;
     height: 70px;
     margin: 0;
-    position: sticky;
+    position: fixed;
     top: 0;
     background-color: white;
     z-index: 1;
+    border: solid rgba(0, 0, 0, 0.1) 2px;
+    width: 100%;
 }
 
 .navbar li{

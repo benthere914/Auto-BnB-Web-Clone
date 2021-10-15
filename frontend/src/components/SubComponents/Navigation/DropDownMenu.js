@@ -15,21 +15,58 @@ export const DropDownMenu = ({setNavDropDown}) => {
     const {setLoginModal, setSignupModal} = useAuthModal()
     const {setMyAccountModal} = useMyAccountModal();
 
+    const logoutHandler = () => {
+        setLoginModal(false);
+        setSignupModal(false);
+        setNavDropDown(false);
+        dispatch(spotActions.resetSpot());
+        dispatch(sessionActions.logout());
+        history.push('/');
+    }
+
+    const loginHandler = () => {
+        setSignupModal(false);
+        setLoginModal(true);
+        setNavDropDown(false);
+    }
+
+    const signUpHandler = () => {
+        setLoginModal(false);
+        setSignupModal(true);
+        setNavDropDown(false);
+    }
+
+    const hostCarHandler = () => {
+        setNavDropDown(false);
+        setLoginModal(!loggedIn);
+        dispatch(spotActions.resetSpot());
+        history.push('/host');
+    }
+
+    const loginAsDemoHandler = () => {
+        dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))
+        setNavDropDown(false);
+        setLoginModal(false);
+        setSignupModal(false);
+    }
+
+
+
 
     return (
         <div className='dropMenu'>
             {loggedIn? (
                 <>
-                    <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(false);setNavDropDown(false);dispatch(sessionActions.logout()); history.push('/')}}>Log Out</h3>
+                    <h3 className="AuthLink" onClick={() => {logoutHandler()}}>Log Out</h3>
                     <h3 onClick={() => setMyAccountModal(true)}>My Account</h3>
                     {/* <h3>My Profile</h3> */}
-                    <h3 className='hostLink' onClick={() => {setNavDropDown(false);setLoginModal(!loggedIn);dispatch(spotActions.resetSpot());history.push('/host')}}>Host Your Car</h3>
+                    <h3 className='hostLink' onClick={() => {hostCarHandler()}}>Host Your Car</h3>
                 </>
             ): (
                 <>
-                <h3 className="AuthLink" onClick={() => {setSignupModal(false);setLoginModal(true);setNavDropDown(false)}}>Log In</h3>
-                <h3 className="AuthLink" onClick={() => {setLoginModal(false);setSignupModal(true);setNavDropDown(false)}}>Sign Up</h3>
-                <h3 className='AuthLink' onClick={() => {dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))}}>Log In As Demo</h3>
+                <h3 className="AuthLink" onClick={() => {loginHandler()}}>Log In</h3>
+                <h3 className="AuthLink" onClick={() => {signUpHandler()}}>Sign Up</h3>
+                <h3 className='AuthLink' onClick={() => {loginAsDemoHandler()}}>Log In As Demo</h3>
                 </>
             )}
         </div>
